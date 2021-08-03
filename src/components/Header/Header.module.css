@@ -10,7 +10,7 @@
 
 .header img {
     width: 56px;
-    float: left;
     margin-left: 20px;
+    vertical-align: middle;
 }
 
