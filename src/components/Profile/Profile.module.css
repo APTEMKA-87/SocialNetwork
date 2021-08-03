@@ -7,3 +7,12 @@
     border-radius: 10px;
     margin-top: 40px;
 }
+
+.post {
+    border-radius: 10px;
+    margin-top: 20px;
+    background-color: #547fb4;
+    text-align: left;
+    padding: 5px 0 20px 20px;
+}
+
