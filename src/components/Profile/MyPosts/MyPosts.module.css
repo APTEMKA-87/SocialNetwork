@@ -5,3 +5,53 @@
     text-align: left;
     padding: 5px 0 20px 20px;
 }
+
+
+.button {
+    background: ghostwhite;
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 30px;
+    margin: 10px 20px;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid #547fb4;
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+    color: black;
+    transition: .2s ease-in-out;
+}
+
+.button:before {
+    content: "";
+    background: linear-gradient(90deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .5));
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    top: -8px;
+    left: -75px;
+    transform: skewX(-45deg);
+}
+
+.button:hover {
+    background-color: #202e49;;
+    color: #fff;
+}
+
+.button:hover:before {
+    left: 150px;
+    transition: .5s ease-in-out;
+}
+
+.addPost {
+    display: flex;
+    flex-direction: row;
+}
+
+.textArea {
+    background-color: ghostwhite;
+    border-radius: 8px;
+    width: 400px;
+    height: 50px;
+    text-align: start;
+}
