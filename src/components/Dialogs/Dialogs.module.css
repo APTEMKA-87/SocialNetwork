@@ -2,5 +2,16 @@
     grid-area: content;
     background-color: #8fbbec;
     border-radius: 10px;
-    margin: 40px 0 10px 0
+    margin: 40px 0 10px 0;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+
+.dialogItems  {
+padding-left: 20px;
+}
+
+.messages {
+
 }
