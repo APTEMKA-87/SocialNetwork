@@ -3,6 +3,7 @@ import s from './Post.module.css'
 
 type MessageType = {
     message: string
+    likeCount: number
 }
 
 const Post: React.FC<MessageType>= (props) => {
@@ -12,6 +13,7 @@ const Post: React.FC<MessageType>= (props) => {
             {props.message}
             <div>
                 <span>like</span>
+                {props.likeCount}
             </div>
         </div>
     );
