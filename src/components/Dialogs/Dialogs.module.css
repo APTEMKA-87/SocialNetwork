@@ -8,8 +8,12 @@
     grid-template-columns: 2fr 10fr;
 }
 
-.dialogItems  {
-padding-left: 20px;
+.dialogItems {
+    padding-left: 20px;
+}
+
+.dialog {
+
 }
 
 .messages {
