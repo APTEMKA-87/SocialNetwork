@@ -11,8 +11,11 @@ function App() {
         <div className="app-wrapper">
             <Header/>
             <Navbar/>
-            <Route path="/dialogs" component={Dialogs}/>
-            <Route path="/profile" component={Profile}/>
+            {/*<Route path="/dialogs" component={Dialogs}/>
+            <Route path="/profile" component={Profile}/>*/}
+
+            <Route path="/dialogs" render={ () => <Dialogs/>} />
+            <Route path="/profile" render={ () => <Profile/>}/>
         </div>
     </BrowserRouter>;
 }
