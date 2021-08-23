@@ -3,8 +3,8 @@ import s from './../Dialogs.module.css';  // поленились и не дел
 import {NavLink} from 'react-router-dom';
 
 type DialogItemType = {
-    name: string
-    id: number,
+    name: string,
+    id: number
 }
 
 let DialogItem = (props: DialogItemType) => {

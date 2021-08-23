@@ -1,12 +1,20 @@
 import React from 'react';
-import MyPosts from './MyPosts/MyPosts';
+import MyPosts, {MyPostsPropsType} from './MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 
-const Profile = () => {
+
+
+const Profile = (props: MyPostsPropsType) => {
+
+    /*let posts = [                             // перенесли в App
+        {id: 1, post: 'Hi', likesCount: 0},
+        {id: 2, post: 'Bye', likesCount: 10}
+    ]*/
+
     return (
         <div className="content">
             <ProfileInfo/>
-            <MyPosts/>
+            <MyPosts posts={props.posts}/>
         </div>
     );
 };
