@@ -6,11 +6,16 @@ import Profile from './components/Profile/Profile';
 import Dialogs, {DialogsType, MessagesType} from './components/Dialogs/Dialogs';
 import {BrowserRouter, Route} from 'react-router-dom';
 import {PostsType} from './components/Profile/MyPosts/MyPosts';
+import { RootStateType } from './Redux/State';
 
-type AppPropsType ={              // норм ли типизация, код ревью
+/*type AppPropsType ={              // норм ли типизация, код ревью
     posts: Array<PostsType>,
     dialogs: Array<DialogsType>,
     messages: Array<MessagesType>
+}*/
+
+type AppPropsType = {
+    appState: RootStateType
 }
 
 function App(props: AppPropsType) {
@@ -42,8 +47,8 @@ function App(props: AppPropsType) {
             {/*<Route path="/dialogs" component={Dialogs}/>          // переделали на render чтобы прокинуть пропсы
             <Route path="/profile" component={Profile}/>*/}
 
-            <Route path="/dialogs" render={ () => <Dialogs dialogs={props.dialogs} messages={props.messages}/>} />
-            <Route path="/profile" render={ () => <Profile posts={props.posts}/>}/>
+            <Route path="/dialogs" render={ () => <Dialogs dialogs={props.appState.dialogs} messages={props.appState.messages}/>} />
+            <Route path="/profile" render={ () => <Profile posts={props.appState.posts}/>}/>
         </div>
     </BrowserRouter>;
 }

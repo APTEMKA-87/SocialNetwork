@@ -3,8 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import state from './Redux/State';
+import {PostsType} from './components/Profile/MyPosts/MyPosts';
+import {DialogsType, MessagesType} from './components/Dialogs/Dialogs';
 
-let posts = [
+/*let posts = [                                // перенесли в стейт в папке редакс
     {id: 1, post: 'Hi', likesCount: 0},
     {id: 2, post: 'Bye', likesCount: 10}
 ]
@@ -22,11 +25,17 @@ let messages = [
     {id: 1, message: 'Hi'},
     {id: 2, message: 'How r u?'},
     {id: 3, message: 'Thank`s'}
-]
+]*/
+
+/*export type StateType = {                       // пока я хз для чего эта типизация
+    posts: Array<PostsType>,
+    dialogs: Array<DialogsType>,
+    messages: Array<MessagesType>
+}*/
 
 ReactDOM.render(
     <React.StrictMode>
-        <App posts={posts} dialogs={dialogs} messages={messages}/>
+        <App appState={state}/>
     </React.StrictMode>,
     document.getElementById('root')
 );
