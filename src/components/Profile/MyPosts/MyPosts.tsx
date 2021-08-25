@@ -14,11 +14,6 @@ export type MyPostsPropsType = {
 
 const MyPosts = (props: MyPostsPropsType) => {
 
-   /* let posts = [                               // перенесли в Профайл
-        {id: 1, post: 'Hi', likesCount: 0},
-        {id: 2, post: 'Bye', likesCount: 10}
-    ]*/
-
     let postsElement = props.posts.map( p => <Post message={p.post} likeCount={p.likesCount}/>)
 
     return (

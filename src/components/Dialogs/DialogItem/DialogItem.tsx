@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './../Dialogs.module.css';  // поленились и не делали отдельный css для данной компоненты, имортируем из Dialog.module.css
+import s from './../Dialogs.module.css';
 import {NavLink} from 'react-router-dom';
 
 type DialogItemType = {
