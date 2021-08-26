@@ -20,14 +20,9 @@ function App(props: AppPropsType) {
         <div className="app-wrapper">
             <Header/>
             <Navbar/>
-            {/*<Route path="/dialogs" render={ () => <Dialogs
-                dialogs={props.state.dialogPage.dialogs}
-                messages={props.state.dialogPage.messages}/>} />
-            <Route path="/profile" render={ () => <Profile
-                posts={props.state.profilePage.posts}/>}/>*/}
-            <Route path="/dialogs" render={ () => <Dialogs
-                dialogPage={props.state.dialogPage}/>} />
-            <Route path="/profile" render={ () => <Profile
+            <Route path="/dialogs" render={() => <Dialogs
+                dialogPage={props.state.dialogPage}/>}/>
+            <Route path="/profile" render={() => <Profile
                 posts={props.state.profilePage.posts}/>}/>
         </div>
     </BrowserRouter>;
