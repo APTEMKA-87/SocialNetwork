@@ -1,4 +1,4 @@
-type PostsType = {
+export type PostsType = {
     id: number,
     post: string,
     likesCount: number
@@ -14,11 +14,11 @@ type MessagesType = {
     message: string
 }
 
-type ProfilePageType = {
+export type ProfilePageType = {
     posts: Array<PostsType>
 }
 
-type DialogPageType = {
+export type DialogPageType = {
     dialogs: Array<DialogsType>,
     messages: Array<MessagesType>
 }

@@ -9,17 +9,26 @@ import {RootStateType} from './Redux/State';
 
 
 type AppPropsType = {
-    appState: RootStateType
+    state: RootStateType
 }
 
 function App(props: AppPropsType) {
+    let a = props.state.profilePage.posts[0].post
+    console.log(a)
 
     return <BrowserRouter>
         <div className="app-wrapper">
             <Header/>
             <Navbar/>
-            <Route path="/dialogs" render={ () => <Dialogs dialogs={props.appState.dialogPage.dialogs} messages={props.appState.dialogPage.messages}/>} />
-            <Route path="/profile" render={ () => <Profile posts={props.appState.profilePage.posts}/>}/>
+            {/*<Route path="/dialogs" render={ () => <Dialogs
+                dialogs={props.state.dialogPage.dialogs}
+                messages={props.state.dialogPage.messages}/>} />
+            <Route path="/profile" render={ () => <Profile
+                posts={props.state.profilePage.posts}/>}/>*/}
+            <Route path="/dialogs" render={ () => <Dialogs
+                dialogPage={props.state.dialogPage}/>} />
+            <Route path="/profile" render={ () => <Profile
+                posts={props.state.profilePage.posts}/>}/>
         </div>
     </BrowserRouter>;
 }
