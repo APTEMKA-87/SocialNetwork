@@ -20,16 +20,15 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
     let newPostElement = React.createRef<HTMLTextAreaElement>()
 
     let addButtonPost = () => {
-        props.addPost(newPostElement.current?.value)
-        /*let text = newPostElement.current?.value
-        props.addPost(text)
-        alert(text)*/
+        if (newPostElement.current) {
+            props.addPost(newPostElement.current.value)
+        }
     }
 
     return (
         <div className={s.post}>
             <div className={s.addPost}>
-                <textarea className={s.textArea} placeholder="Your New Post" ref={newPostElement} />
+                <textarea className={s.textArea} placeholder="Your New Post" ref={newPostElement}/>
                 <button className={s.button} onClick={addButtonPost}>Add Post</button>
             </div>
             {postsElement}
