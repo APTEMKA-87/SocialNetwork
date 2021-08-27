@@ -1,9 +1,15 @@
 import React from 'react';
 import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
-import {ProfilePageType} from '../../Redux/State';
+import {PostsType} from '../../Redux/State';
 
-const Profile: React.FC<ProfilePageType> = (props ) => {
+type PropsType = {
+    posts: Array<PostsType>
+    addPost: (postText: string) => void
+
+}
+
+const Profile: React.FC<PropsType> = (props ) => {
 
     return (
         <div className="content">

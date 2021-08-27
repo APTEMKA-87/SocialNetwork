@@ -5,11 +5,12 @@ import Navbar from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
 import Dialogs from './components/Dialogs/Dialogs';
 import {BrowserRouter, Route} from 'react-router-dom';
-import {RootStateType} from './Redux/State';
+import {addPost, RootStateType} from './Redux/State';
 
 
 type AppPropsType = {
-    state: RootStateType
+    state: RootStateType,
+    addPost: (postText: string) => void
 }
 
 function App(props: AppPropsType) {
@@ -23,9 +24,10 @@ function App(props: AppPropsType) {
             <Route path="/dialogs" render={() => <Dialogs
                 dialogPage={props.state.dialogPage}/>}/>
             <Route path="/profile" render={() => <Profile
-                posts={props.state.profilePage.posts}/>}/>
+                posts={props.state.profilePage.posts} addPost={addPost}/>}/>
         </div>
     </BrowserRouter>;
 }
 
 export default App;
+
