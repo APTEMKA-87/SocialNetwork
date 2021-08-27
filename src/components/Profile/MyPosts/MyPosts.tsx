@@ -10,7 +10,7 @@ export type PostsType = {
 
 export type MyPostsPropsType = {
     posts: Array<PostsType>,
-    addPost: any                         // type
+    addPost: (postText: string) => void                         // type
 }
 
 const MyPosts: React.FC<MyPostsPropsType> = (props) => {
@@ -34,7 +34,7 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
                 <textarea className={s.textArea} placeholder="Your New Post" ref={newPostElement}/>
                 <button className={s.button} onClick={addButtonPost}>Add Post</button>
             </div>
-            {postsElement}
+            <b>{postsElement}</b>
         </div>
     );
 };
