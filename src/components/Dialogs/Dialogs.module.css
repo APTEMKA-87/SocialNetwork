@@ -12,10 +12,15 @@
     padding-left: 20px;
 }
 
-.dialog {
-
+.textArea {
+    background-color: ghostwhite;
+    border-radius: 8px;
+    width: 350px;
+    height: 50px;
+    text-align: start;
 }
 
-.messages {
-
+.newMessage {
+    display: flex;
+    flex-direction: row;
 }

@@ -1,3 +1,5 @@
+import {rerenderTree} from '../rerenderTree';
+
 export type PostsType = {
     id: number,
     post: string,
@@ -59,6 +61,7 @@ export let addPost = (postText: string) => {
         likesCount: 0
     }
     state.profilePage.posts.push(newPost)
+    rerenderTree(state)
 }
 
 export default state;
