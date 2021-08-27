@@ -52,7 +52,7 @@ let state: RootStateType = {
     ]
 }}
 
-export let addPost = (postText: string) => {     // postMesage = postText
+export let addPost = (postText: string) => {
     let newPost: PostsType = {
         id: 5,
         post: postText,

@@ -14,7 +14,7 @@ const Profile: React.FC<PropsType> = (props ) => {
     return (
         <div className="content">
             <ProfileInfo/>
-            <MyPosts posts={props.posts}/>
+            <MyPosts posts={props.posts} addPost={props.addPost}/>               {/*переделать на posts={props.state.posts}*/}
         </div>
     );
 };

@@ -9,7 +9,8 @@ export type PostsType = {
 }
 
 export type MyPostsPropsType = {
-    posts: Array<PostsType>
+    posts: Array<PostsType>,
+    addPost: any                         // type
 }
 
 const MyPosts: React.FC<MyPostsPropsType> = (props) => {
@@ -19,8 +20,10 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
     let newPostElement = React.createRef<HTMLTextAreaElement>()
 
     let addButtonPost = () => {
-        let text = newPostElement.current?.value
-        alert(text)
+        props.addPost(newPostElement.current?.value)
+        /*let text = newPostElement.current?.value
+        props.addPost(text)
+        alert(text)*/
     }
 
     return (
