@@ -1,5 +1,6 @@
 import React from 'react';
 import s from './Post.module.css'
+import photo from '../../../../img/avatar.png'
 
 type MessagePostPropsType = {
     postFromPost: string
@@ -9,7 +10,7 @@ type MessagePostPropsType = {
 const Post: React.FC<MessagePostPropsType>= (props) => {
     return (
         <div className={s.post}>
-            <img src={'/img/avatar.png'} alt=''/>
+            <img src={photo} alt=''/>
             {props.postFromPost}
             <div>
                 <span>like</span>
