@@ -10,7 +10,7 @@ export type PostsType = {
 
 export type MyPostsPropsType = {
     posts: Array<PostsType>,
-    addPost: (postText: string) => void                         //  gitgit
+    addPost: (postText: string) => void
 }
 
 const MyPosts: React.FC<MyPostsPropsType> = (props) => {

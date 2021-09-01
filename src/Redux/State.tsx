@@ -70,4 +70,13 @@ export let addPost = (postText: string) => {
     rerenderTree(state)
 }
 
+export let addDialog = (dialogText: string) => {
+    let newDialog: MessagesType = {
+        id: 3,
+        message: dialogText
+    }
+    state.dialogPage.messages.push(newDialog)
+    rerenderTree(state)
+}
+
 export default state;

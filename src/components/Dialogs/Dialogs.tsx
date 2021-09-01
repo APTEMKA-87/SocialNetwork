@@ -7,6 +7,7 @@ import b from './../Profile/MyPosts/MyPosts.module.css'
 
 type DialogsPropsType = {
     dialogPage: DialogPageType
+    addDialog: (dialogText: string) => void
 }
 
 const Dialogs = (props: DialogsPropsType) => {
@@ -16,9 +17,14 @@ const Dialogs = (props: DialogsPropsType) => {
     let sendMessage = React.createRef<HTMLTextAreaElement>()
 
     let addButtonMessage = () => {
-        let text = sendMessage.current?.value
-        alert(text)
+        if (sendMessage.current) {
+            props.addDialog(sendMessage.current.value)
+        }
+        if (sendMessage.current) {
+            sendMessage.current.value = ''
+        }
     }
+
     return (
         <div className={s.content}>
             <div className={s.dialogItems}>
@@ -26,6 +32,7 @@ const Dialogs = (props: DialogsPropsType) => {
             </div>
             <div className={s.messages}>
                 {messagesElements}
+                {props.addDialog}
                 <div className={s.newMessage}>
                     <textarea className={s.textArea} placeholder="New Message" ref={sendMessage}/>
                     <button className={b.button} onClick={addButtonMessage}>Send Message</button>

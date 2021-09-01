@@ -11,11 +11,10 @@ import {RootStateType} from './Redux/State';
 type AppPropsType = {
     state: RootStateType,
     addPost: (postText: string) => void
+    addDialog: (dialogText: string) => void
 }
 
 function App(props: AppPropsType) {
-    let a = props.state.profilePage.posts[0].post
-    console.log(a)
 
     return <BrowserRouter>
         <div className="app-wrapper">
@@ -23,6 +22,7 @@ function App(props: AppPropsType) {
             <Navbar/>
             <Route path="/dialogs" render={() => <Dialogs
                 dialogPage={props.state.dialogPage}
+                addDialog={props.addDialog}
             />}/>
             <Route path="/profile" render={() => <Profile
                 posts={props.state.profilePage.posts}       // переделать на posts={props.state.profilePage}
