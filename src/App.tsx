@@ -25,7 +25,7 @@ function App(props: AppPropsType) {
                 addDialog={props.addDialog}
             />}/>
             <Route path="/profile" render={() => <Profile
-                posts={props.state.profilePage.posts}       // переделать на posts={props.state.profilePage}
+                profilePage={props.state.profilePage}
                 addPost={props.addPost}
             />}/>
         </div>

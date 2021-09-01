@@ -1,10 +1,10 @@
 import React from 'react';
 import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
-import {PostsType} from '../../Redux/State';
+import {ProfilePageType} from '../../Redux/State';
 
 type PropsType = {
-    posts: Array<PostsType>
+    profilePage: ProfilePageType
     addPost: (postText: string) => void
 
 }
@@ -14,7 +14,7 @@ const Profile: React.FC<PropsType> = (props ) => {
     return (
         <div className="content">
             <ProfileInfo/>
-            <MyPosts posts={props.posts} addPost={props.addPost}/>               {/*переделать на posts={props.state.posts}*/}
+            <MyPosts posts={props.profilePage.posts} addPost={props.addPost}/>
         </div>
     );
 };

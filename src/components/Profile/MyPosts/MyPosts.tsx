@@ -22,8 +22,6 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
     let addButtonPost = () => {
         if (newPostElement.current) {
             props.addPost(newPostElement.current.value)
-        }
-        if (newPostElement.current) {                // зануление textarea
             newPostElement.current.value = ''
         }
     }

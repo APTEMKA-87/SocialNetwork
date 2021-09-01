@@ -33,7 +33,11 @@ export type RootStateType = {
 let state: RootStateType = {
     profilePage: {
         posts: [
-            {id: 1, post: 'Hi, my name is Artyom and I Front-end developer. I will be glad to job offers.', likesCount: 0},
+            {
+                id: 1,
+                post: 'Hi, my name is Artyom and I Front-end developer. I will be glad to job offers.',
+                likesCount: 0
+            },
             {
                 id: 2, post: 'I’m a person who is addicted to programming. I have experience ' +
                     'in creating SPA using React/Redux, JS/TS, HTML/CSS. Now I’m improving ' +
