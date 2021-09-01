@@ -1,8 +1,23 @@
 import './index.css';
-import reportWebVitals from './reportWebVitals';
-import state from './Redux/State';
-import {rerenderTree} from './rerenderTree';
+import state, {addDialog, addPost, subscribe, updateNewPostText} from './Redux/State';
+import ReactDOM from 'react-dom';
+import React from 'react';
+import App from './App';
 
-rerenderTree(state)
+export const rerenderTree = () => {
+    ReactDOM.render(
+        <React.StrictMode>
+            <App
+                state={state}
+                addPost={addPost}
+                addDialog={addDialog}
+                updateNewPostText={updateNewPostText}
+            />
+        </React.StrictMode>,
+        document.getElementById('root')
+    );
+}
 
-reportWebVitals();
+rerenderTree()
+
+subscribe(rerenderTree)

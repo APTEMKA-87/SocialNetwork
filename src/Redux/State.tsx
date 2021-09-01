@@ -1,4 +1,6 @@
-import {rerenderTree} from '../rerenderTree';
+let rerenderTree = () => {
+    console.log('state change')
+}
 
 export type PostsType = {
     id: number,
@@ -74,21 +76,25 @@ export let addPost = () => {
     }
     state.profilePage.posts.push(newPost)
     state.profilePage.newPostText = ''
-    rerenderTree(state)
+    rerenderTree()
 }
 
-export let addDialog = (dialogText: string) => {
+export const addDialog = (dialogText: string) => {
     let newDialog: MessagesType = {
         id: 3,
         message: dialogText
     }
     state.dialogPage.messages.push(newDialog)
-    rerenderTree(state)
+    rerenderTree()
 }
 
-export let updateNewPostText = (newText: string) => {
+export const updateNewPostText = (newText: string) => {
     state.profilePage.newPostText = newText
-    rerenderTree(state)
+    rerenderTree()
+}
+
+export const subscribe = (observer: () => void) => {
+    rerenderTree = observer
 }
 
 export default state;
