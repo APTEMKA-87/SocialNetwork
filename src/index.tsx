@@ -18,6 +18,6 @@ export const rerenderTree = () => {
     );
 }
 
-rerenderTree()
+rerenderTree() // если вкорячить стейт хз что происходит
 
 subscribe(rerenderTree)
