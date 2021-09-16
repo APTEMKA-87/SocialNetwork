@@ -10,9 +10,6 @@ import {ActionTypes, RootStateType} from './Redux/State';
 
 type AppPropsType = {
     state: RootStateType,
-    /*addPost: (postText: string) => void,
-    addDialog: (dialogText: string) => void,
-    updateNewPostText: (newText: string) => void*/
     dispatch: (action: ActionTypes) => void
 }
 
@@ -24,14 +21,11 @@ function App(props: AppPropsType) {
             <Navbar/>
             <Route path="/dialogs" render={() => <Dialogs
                 dialogPage={props.state.dialogPage}
-                dispatch ={props.dispatch}
-                /*addDialog={props.addDialog}*/
+                dispatch={props.dispatch}
             />}/>
             <Route path="/profile" render={() => <Profile
                 profilePage={props.state.profilePage}
-                dispatch ={props.dispatch}
-                /*addPost={props.addPost}
-                updateNewPostText={props.updateNewPostText}*/
+                dispatch={props.dispatch}
             />}/>
         </div>
     </BrowserRouter>;

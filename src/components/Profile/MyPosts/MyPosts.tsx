@@ -11,9 +11,7 @@ export type PostsType = {
 
 export type MyPostsPropsType = {
     posts: Array<PostsType>,
-    /*addPost: (postText: string) => void,*/
     newPostText: string,
-    /*updateNewPostText: (newText: string) => void*/
     dispatch: (action: ActionTypes) => void
 }
 
@@ -26,14 +24,12 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
     let addButtonPost = () => {
         if (newPostElement.current) {
             props.dispatch({type: 'ADD-POST'})
-            /*props.addPost(newPostElement.current.value)*/
         }
     }
 
     let onPostChange = () => {
         if (newPostElement.current) {
-            props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: newPostElement.current.value }) // спиздил решение со страницы с ошибкой хз как правильно
-            /*props.updateNewPostText(newPostElement.current.value)*/
+            props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: newPostElement.current.value}) // спиздил решение со страницы с ошибкой хз как правильно
         }
     }
 

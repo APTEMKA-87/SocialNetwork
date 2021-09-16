@@ -32,9 +32,6 @@ export type RootStateType = {
 export type StoreType = {
     _state: RootStateType,
     _callSubscriber: () => void
-    addPost: () => void,
-    addDialog: (dialogText: string) => void,
-    updateNewPostText: (newText: string) => void,
     subscribe: (observer: () => void) => void,
     getState: () => RootStateType,
     dispatch: (action: ActionTypes) => void
@@ -42,18 +39,16 @@ export type StoreType = {
 
 type AddPostActionType = {
     type: 'ADD-POST',
-    /*newPost: string*/  // походу эта шляпа не нужна
 }
 
 type AddDialogActionType = {
     type: 'ADD-DIALOG',
-    /*newDialog: string,*/    // походу эта шляпа не нужна
     dialogText: string
 }
 
 type UpdateNewPostTextActionType = {
     type: 'UPDATE-NEW-POST-TEXT',
-    newText: string                   // выдает ошибку {type: 'UPDATE-NEW-POST-TEXT'})
+    newText: string
 }
 
 export type ActionTypes =
@@ -98,29 +93,6 @@ const store: StoreType = {
     },
     _callSubscriber() {
         console.log('state change')
-    },
-
-    addPost() {
-        let newPost: PostsType = {
-            id: 5,
-            post: this._state.profilePage.newPostText,
-            likesCount: 0
-        }
-        this._state.profilePage.posts.push(newPost)
-        this._state.profilePage.newPostText = ''
-        this._callSubscriber()
-    },
-    addDialog(dialogText: string) {
-        let newDialog: MessagesType = {
-            id: 3,
-            message: dialogText
-        }
-        this._state.dialogPage.messages.push(newDialog)
-        this._callSubscriber()
-    },
-    updateNewPostText(newText: string) {
-        this._state.profilePage.newPostText = newText
-        this._callSubscriber()
     },
 
     dispatch(action) {

@@ -7,7 +7,6 @@ import b from './../Profile/MyPosts/MyPosts.module.css'
 
 type DialogsPropsType = {
     dialogPage: DialogPageType
-    /*addDialog: (dialogText: string) => void*/
     dispatch: (action: ActionTypes) => void
 }
 
@@ -20,7 +19,6 @@ const Dialogs = (props: DialogsPropsType) => {
     let addButtonMessage = () => {
         if (sendMessage.current) {
             props.dispatch({type: 'ADD-DIALOG', dialogText: sendMessage.current.value})
-            /*props.addDialog(sendMessage.current.value)*/
         }
         if (sendMessage.current) {
             sendMessage.current.value = ''
@@ -35,7 +33,6 @@ const Dialogs = (props: DialogsPropsType) => {
             <div className={s.messages}>
                 {messagesElements}
                 {props.dispatch}
-                {/*{props.addDialog}*/}
                 <div className={s.newMessage}>
                     <textarea className={s.textArea} placeholder="New Message" ref={sendMessage}/>
                     <button className={b.button} onClick={addButtonMessage}>Send Message</button>
