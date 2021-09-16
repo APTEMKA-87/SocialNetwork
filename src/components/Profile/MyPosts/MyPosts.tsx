@@ -1,6 +1,7 @@
 import React from 'react';
 import s from './MyPosts.module.css'
 import Post from './Post/Post';
+import {ActionTypes} from '../../../Redux/State';
 
 export type PostsType = {
     id: number,
@@ -10,9 +11,10 @@ export type PostsType = {
 
 export type MyPostsPropsType = {
     posts: Array<PostsType>,
-    addPost: (postText: string) => void,
+    /*addPost: (postText: string) => void,*/
     newPostText: string,
-    updateNewPostText: (newText: string) => void
+    /*updateNewPostText: (newText: string) => void*/
+    dispatch: (action: ActionTypes) => void
 }
 
 const MyPosts: React.FC<MyPostsPropsType> = (props) => {
@@ -23,14 +25,15 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
 
     let addButtonPost = () => {
         if (newPostElement.current) {
-            props.addPost(newPostElement.current.value)
+            props.dispatch({type: 'ADD-POST'})
+            /*props.addPost(newPostElement.current.value)*/
         }
     }
 
     let onPostChange = () => {
         if (newPostElement.current) {
-            props.updateNewPostText(newPostElement.current.value)
-
+            props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: newPostElement.current.value }) // спиздил решение со страницы с ошибкой хз как правильно
+            /*props.updateNewPostText(newPostElement.current.value)*/
         }
     }
 

@@ -31,13 +31,35 @@ export type RootStateType = {
 
 export type StoreType = {
     _state: RootStateType,
+    _callSubscriber: () => void
     addPost: () => void,
     addDialog: (dialogText: string) => void,
     updateNewPostText: (newText: string) => void,
     subscribe: (observer: () => void) => void,
     getState: () => RootStateType,
-    _callSubscriber: () => void
+    dispatch: (action: ActionTypes) => void
 }
+
+type AddPostActionType = {
+    type: 'ADD-POST',
+    /*newPost: string*/  // походу эта шляпа не нужна
+}
+
+type AddDialogActionType = {
+    type: 'ADD-DIALOG',
+    /*newDialog: string,*/    // походу эта шляпа не нужна
+    dialogText: string
+}
+
+type UpdateNewPostTextActionType = {
+    type: 'UPDATE-NEW-POST-TEXT',
+    newText: string                   // выдает ошибку {type: 'UPDATE-NEW-POST-TEXT'})
+}
+
+export type ActionTypes =
+    AddPostActionType |
+    AddDialogActionType |
+    UpdateNewPostTextActionType
 
 const store: StoreType = {
     _state: {
@@ -74,8 +96,7 @@ const store: StoreType = {
             ]
         }
     },
-
-    _callSubscriber  ()  {
+    _callSubscriber() {
         console.log('state change')
     },
 
@@ -89,7 +110,6 @@ const store: StoreType = {
         this._state.profilePage.newPostText = ''
         this._callSubscriber()
     },
-
     addDialog(dialogText: string) {
         let newDialog: MessagesType = {
             id: 3,
@@ -98,16 +118,37 @@ const store: StoreType = {
         this._state.dialogPage.messages.push(newDialog)
         this._callSubscriber()
     },
-
     updateNewPostText(newText: string) {
         this._state.profilePage.newPostText = newText
         this._callSubscriber()
     },
 
+    dispatch(action) {
+        if (action.type === 'ADD-POST') {
+            let newPost: PostsType = {
+                id: 5,
+                post: this._state.profilePage.newPostText,
+                likesCount: 0
+            }
+            this._state.profilePage.posts.push(newPost)
+            this._state.profilePage.newPostText = ''
+            this._callSubscriber()
+        } else if (action.type === 'ADD-DIALOG') {
+            let newDialog: MessagesType = {
+                id: 3,
+                message: action.dialogText
+            }
+            this._state.dialogPage.messages.push(newDialog)
+            this._callSubscriber()
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._state.profilePage.newPostText = action.newText
+            this._callSubscriber()
+        }
+    },
+
     subscribe(observer) {
         this._callSubscriber = observer
     },
-
     getState() {
         return this._state
     }
