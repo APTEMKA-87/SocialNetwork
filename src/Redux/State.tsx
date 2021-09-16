@@ -37,9 +37,9 @@ export type StoreType = {
     dispatch: (action: ActionTypes) => void
 }
 
-type AddPostActionType = {
+/*type AddPostActionType = {
     type: 'ADD-POST',
-}
+}*/
 
 type AddDialogActionType = {
     type: 'ADD-DIALOG',
@@ -52,7 +52,7 @@ type UpdateNewPostTextActionType = {
 }
 
 export type ActionTypes =
-    AddPostActionType |
+    addButtonPostACType |
     AddDialogActionType |
     UpdateNewPostTextActionType
 
@@ -126,22 +126,24 @@ const store: StoreType = {
     }
 }
 
-type addButtonPostACType = {
+type addButtonPostACType = ReturnType<typeof addButtonPostAC>
+
+/*type addButtonPostACType = {
     type: 'ADD-POST'
-}
+}*/
 
 type onPostChangeACType = {
     type: 'UPDATE-NEW-POST-TEXT',
     newText: string
 }
 
-export const addButtonPostAC = (): addButtonPostACType => {
+export const addButtonPostAC = () => {
     return {
         type: 'ADD-POST',
     } as const
 }
 
-export const onPostChangeAC = (newText: string):onPostChangeACType => {
+export const onPostChangeAC = (newText: string): onPostChangeACType => {
     return {
         type: 'UPDATE-NEW-POST-TEXT',
         newText: newText
