@@ -2,7 +2,7 @@ import React from 'react';
 import s from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogItem';
 import MessageDialogs from './Message/Message';
-import {ActionTypes, DialogPageType} from '../../Redux/State';
+import {ActionTypes, addButtonMessageAC, DialogPageType} from '../../Redux/State';
 import b from './../Profile/MyPosts/MyPosts.module.css'
 
 type DialogsPropsType = {
@@ -16,9 +16,9 @@ const Dialogs = (props: DialogsPropsType) => {
     let messagesElements = props.dialogPage.messages.map(m => <MessageDialogs messageDialog={m.message}/>)
     let sendMessage = React.createRef<HTMLTextAreaElement>()
 
-    let addButtonMessage = () => {
+    let addButtonMessage = (dialogText: any) => {         // type
         if (sendMessage.current) {
-            props.dispatch({type: 'ADD-DIALOG', dialogText: sendMessage.current.value})
+            props.dispatch(addButtonMessageAC(sendMessage.current.value))
         }
         if (sendMessage.current) {
             sendMessage.current.value = ''

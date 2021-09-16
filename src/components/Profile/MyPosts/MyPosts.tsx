@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './MyPosts.module.css'
 import Post from './Post/Post';
-import {ActionTypes} from '../../../Redux/State';
+import {ActionTypes, addButtonPostAC, onPostChangeAC} from '../../../Redux/State';
 
 export type PostsType = {
     id: number,
@@ -23,13 +23,13 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
 
     let addButtonPost = () => {
         if (newPostElement.current) {
-            props.dispatch({type: 'ADD-POST'})
+            props.dispatch(addButtonPostAC())
         }
     }
 
-    let onPostChange = () => {
+    let onPostChange = (newText: any) => {     // type
         if (newPostElement.current) {
-            props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: newPostElement.current.value}) // спиздил решение со страницы с ошибкой хз как правильно
+            props.dispatch(onPostChangeAC(newPostElement.current.value))
         }
     }
 

@@ -126,4 +126,38 @@ const store: StoreType = {
     }
 }
 
+type addButtonPostACType = {
+    type: 'ADD-POST'
+}
+
+type onPostChangeACType = {
+    type: 'UPDATE-NEW-POST-TEXT',
+    newText: string
+}
+
+export const addButtonPostAC = (): addButtonPostACType => {
+    return {
+        type: 'ADD-POST',
+    } as const
+}
+
+export const onPostChangeAC = (newText: string):onPostChangeACType => {
+    return {
+        type: 'UPDATE-NEW-POST-TEXT',
+        newText: newText
+    } as const
+}
+
+type addButtonMessageACType = {
+    type: 'ADD-DIALOG',
+    dialogText: string
+}
+
+export const addButtonMessageAC = (dialogText: string): addButtonMessageACType => {
+    return {
+        type: 'ADD-DIALOG',
+        dialogText: dialogText
+    } as const
+}
+
 export default store;
