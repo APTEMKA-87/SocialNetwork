@@ -45,6 +45,10 @@ export type ActionTypes =
     addButtonMessageACType |
     onPostChangeACType        //  type: 'UPDATE-NEW-POST-TEXT'
 
+type addButtonPostACType = ReturnType<typeof addButtonPostAC>
+type onPostChangeACType = ReturnType<typeof onPostChangeAC>
+type addButtonMessageACType = ReturnType<typeof addButtonMessageAC>
+
 const store: StoreType = {
     _state: {
         profilePage: {
@@ -98,31 +102,5 @@ const store: StoreType = {
         this._callSubscriber()
     }
 }
-
-type addButtonPostACType = ReturnType<typeof addButtonPostAC>
-
-type onPostChangeACType = ReturnType<typeof onPostChangeAC>
-
-type addButtonMessageACType = ReturnType<typeof addButtonMessageAC>
-
-/*export const addButtonPostAC = () => {
-    return {
-        type: 'ADD-POST',
-    } as const
-}*/
-
-/*export const onPostChangeAC = (newText: string) => {
-    return {
-        type: 'UPDATE-NEW-POST-TEXT',
-        newText: newText
-    } as const
-}*/
-
-/*export const addButtonMessageAC = (dialogText: string) => {
-    return {
-        type: 'ADD-DIALOG',
-        dialogText: dialogText
-    } as const
-}*/
 
 export default store;
