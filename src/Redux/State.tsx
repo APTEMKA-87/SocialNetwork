@@ -1,3 +1,6 @@
+import ProfileReducer, {addButtonPostAC, onPostChangeAC} from './profile-reducer';
+import DialogsReducer, {addButtonMessageAC} from './dialogs-reducer';
+
 export type PostsType = {
     id: number,
     post: string,
@@ -9,7 +12,7 @@ type DialogsType = {
     name: string
 }
 
-type MessagesType = {
+export type MessagesType = {
     id: number,
     message: string
 }
@@ -89,26 +92,10 @@ const store: StoreType = {
     },
 
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
-            let newPost: PostsType = {
-                id: 5,
-                post: this._state.profilePage.newPostText,
-                likesCount: 0
-            }
-            this._state.profilePage.posts.push(newPost)
-            this._state.profilePage.newPostText = ''
-            this._callSubscriber()
-        } else if (action.type === 'ADD-DIALOG') {
-            let newDialog: MessagesType = {
-                id: 3,
-                message: action.dialogText
-            }
-            this._state.dialogPage.messages.push(newDialog)
-            this._callSubscriber()
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            this._state.profilePage.newPostText = action.newText
-            this._callSubscriber()
-        }
+
+        this._state.profilePage = ProfileReducer(this._state.profilePage, action)
+        this._state.dialogPage = DialogsReducer(this._state.dialogPage, action)
+        this._callSubscriber()
     }
 }
 
@@ -118,24 +105,24 @@ type onPostChangeACType = ReturnType<typeof onPostChangeAC>
 
 type addButtonMessageACType = ReturnType<typeof addButtonMessageAC>
 
-export const addButtonPostAC = () => {
+/*export const addButtonPostAC = () => {
     return {
         type: 'ADD-POST',
     } as const
-}
+}*/
 
-export const onPostChangeAC = (newText: string) => {
+/*export const onPostChangeAC = (newText: string) => {
     return {
         type: 'UPDATE-NEW-POST-TEXT',
         newText: newText
     } as const
-}
+}*/
 
-export const addButtonMessageAC = (dialogText: string) => {
+/*export const addButtonMessageAC = (dialogText: string) => {
     return {
         type: 'ADD-DIALOG',
         dialogText: dialogText
     } as const
-}
+}*/
 
 export default store;

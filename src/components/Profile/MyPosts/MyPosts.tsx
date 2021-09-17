@@ -1,7 +1,8 @@
 import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import Post from './Post/Post';
-import {ActionTypes, addButtonPostAC, onPostChangeAC} from '../../../Redux/State';
+import {ActionTypes} from '../../../Redux/State';
+import {addButtonPostAC, onPostChangeAC} from '../../../Redux/profile-reducer';
 
 export type PostsType = {
     id: number,
