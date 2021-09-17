@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import Post from './Post/Post';
 import {ActionTypes, addButtonPostAC, onPostChangeAC} from '../../../Redux/State';
@@ -27,7 +27,7 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
         }
     }
 
-    let onPostChange = (newText: any) => {     // type
+    let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {     // type
         if (newPostElement.current) {
             props.dispatch(onPostChangeAC(newPostElement.current.value))
         }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {MouseEventHandler} from 'react';
 import s from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogItem';
 import MessageDialogs from './Message/Message';
@@ -16,7 +16,7 @@ const Dialogs = (props: DialogsPropsType) => {
     let messagesElements = props.dialogPage.messages.map(m => <MessageDialogs messageDialog={m.message}/>)
     let sendMessage = React.createRef<HTMLTextAreaElement>()
 
-    let addButtonMessage = (dialogText: any) => {         // type
+    let addButtonMessage = () => {         // type
         if (sendMessage.current) {
             props.dispatch(addButtonMessageAC(sendMessage.current.value))
         }
