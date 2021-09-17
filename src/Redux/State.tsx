@@ -40,7 +40,7 @@ export type StoreType = {
 export type ActionTypes =
     addButtonPostACType |
     addButtonMessageACType |
-    onPostChangeACType
+    onPostChangeACType        //  type: 'UPDATE-NEW-POST-TEXT'
 
 const store: StoreType = {
     _state: {
@@ -81,6 +81,13 @@ const store: StoreType = {
         console.log('state change')
     },
 
+    subscribe(observer) {
+        this._callSubscriber = observer
+    },
+    getState() {
+        return this._state
+    },
+
     dispatch(action) {
         if (action.type === 'ADD-POST') {
             let newPost: PostsType = {
@@ -102,13 +109,6 @@ const store: StoreType = {
             this._state.profilePage.newPostText = action.newText
             this._callSubscriber()
         }
-    },
-
-    subscribe(observer) {
-        this._callSubscriber = observer
-    },
-    getState() {
-        return this._state
     }
 }
 
