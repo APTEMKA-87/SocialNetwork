@@ -3,7 +3,24 @@ import {ActionTypes, PostsType, ProfilePageType} from './State';
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 
-const ProfileReducer = (state: ProfilePageType, action: ActionTypes) => {
+let initialState = {
+    posts: [
+        {
+            id: 1,
+            post: 'Hi, my name is Artyom and I Front-end developer. I will be glad to job offers.',
+            likesCount: 0
+        },
+        {
+            id: 2, post: 'I’m a person who is addicted to programming. I have experience ' +
+                'in creating SPA using React/Redux, JS/TS, HTML/CSS. Now I’m improving ' +
+                'my skills and expanding them, learning new technologies. ',
+            likesCount: 10
+        }
+    ],
+    newPostText: ''
+}
+
+const ProfileReducer = (state: ProfilePageType = initialState, action: ActionTypes) => {
     switch (action.type) {
         case ADD_POST:
             let newPost: PostsType = {

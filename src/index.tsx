@@ -1,10 +1,10 @@
 import './index.css';
-import store from './Redux/State';
+import store from './Redux/redux-store';
 import ReactDOM from 'react-dom';
 import React from 'react';
 import App from './App';
 
-export const rerenderTree = () => {
+export const rerenderTree = (state: any) => {
     ReactDOM.render(
         <React.StrictMode>
             <App
@@ -16,6 +16,11 @@ export const rerenderTree = () => {
     );
 }
 
-rerenderTree() // если вкорячить стейт хз что происходит
+/*rerenderTree() // если вкорячить стейт хз что происходит
+store.subscribe(rerenderTree)*/
 
-store.subscribe(rerenderTree)
+rerenderTree(store.getState())
+store.subscribe(() => {
+    let state = store.getState()
+    rerenderTree(state)
+})
