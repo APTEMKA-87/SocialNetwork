@@ -3,8 +3,9 @@ import store from './Redux/redux-store';
 import ReactDOM from 'react-dom';
 import React from 'react';
 import App from './App';
+import {RootStateType} from './Redux/Store';
 
-export const rerenderTree = (state: any) => {
+export const rerenderTree = (state: RootStateType) => { // why unused state
     ReactDOM.render(
         <React.StrictMode>
             <App

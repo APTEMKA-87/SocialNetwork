@@ -32,6 +32,3 @@ function App(props: AppPropsType) {
 }
 
 export default App;
-
-// Type '{}' is missing the following properties from type '{ profilePage: any; dialogPage: any; }':
-// profilePage, dialogPage

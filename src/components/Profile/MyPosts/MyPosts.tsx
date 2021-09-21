@@ -28,7 +28,7 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
         }
     }
 
-    let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {     // не совсем понятно с событием мы его вроде как не используем, но зачем тогда его писать?
+    let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {     // why e unused?
         if (newPostElement.current) {
             props.dispatch(onPostChangeAC(newPostElement.current.value))
         }

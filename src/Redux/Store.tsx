@@ -49,7 +49,6 @@ type addButtonPostACType = ReturnType<typeof addButtonPostAC>
 type onPostChangeACType = ReturnType<typeof onPostChangeAC>
 type addButtonMessageACType = ReturnType<typeof addButtonMessageAC>
 
-/*
 const store: StoreType = {
     _state: {
         profilePage: {
@@ -103,4 +102,4 @@ const store: StoreType = {
     }
 }
 
-export default store;*/
+export default store;
