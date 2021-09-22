@@ -1,8 +1,6 @@
 import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import Post from './Post/Post';
-import {ActionTypes} from '../../../Redux/State';
-import {addButtonPostAC, onPostChangeAC} from '../../../Redux/profile-reducer';
 
 export type PostsType = {
     id: number,
@@ -13,7 +11,8 @@ export type PostsType = {
 export type MyPostsPropsType = {
     posts: Array<PostsType>,
     newPostText: string,
-    dispatch: (action: ActionTypes) => void
+    addPost: () => void,
+    onPostChange: (text: string) => void
 }
 
 const MyPosts: React.FC<MyPostsPropsType> = (props) => {
@@ -23,14 +22,12 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
     let newPostElement = React.createRef<HTMLTextAreaElement>()
 
     let addButtonPost = () => {
-        if (newPostElement.current) {
-            props.dispatch(addButtonPostAC())
-        }
+            props.addPost()
     }
 
     let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {     // why e unused?
         if (newPostElement.current) {
-            props.dispatch(onPostChangeAC(newPostElement.current.value))
+            props.onPostChange(newPostElement.current.value)
         }
     }
 
