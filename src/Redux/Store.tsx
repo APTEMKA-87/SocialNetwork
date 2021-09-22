@@ -1,3 +1,4 @@
+/*
 import ProfileReducer, {addButtonPostAC, onPostChangeAC} from './profile-reducer';
 import DialogsReducer, {addButtonMessageAC} from './dialogs-reducer';
 
@@ -103,3 +104,7 @@ const store: StoreType = {
 }
 
 export default store;
+
+
+*/
+export {}
