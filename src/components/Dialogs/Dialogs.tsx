@@ -2,13 +2,14 @@ import React from 'react';
 import s from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogItem';
 import MessageDialogs from './Message/Message';
-import {ActionTypes, DialogPageType} from '../../Redux/State';
 import b from './../Profile/MyPosts/MyPosts.module.css'
-import {addButtonMessageAC} from '../../Redux/dialogs-reducer';
+import {RootStoreType} from '../../Redux/redux-store';
 
 type DialogsPropsType = {
-    dialogPage: DialogPageType
-    dispatch: (action: ActionTypes) => void
+    store: RootStoreType
+    // updateNewMessage: (body: string) => void
+    // sendMessage: () => void
+    // dialogPage: DialogPageType
 }
 
 const Dialogs = (props: DialogsPropsType) => {
@@ -17,12 +18,15 @@ const Dialogs = (props: DialogsPropsType) => {
     let messagesElements = props.dialogPage.messages.map(m => <MessageDialogs messageDialog={m.message}/>)
     let sendMessage = React.createRef<HTMLTextAreaElement>()
 
+
     let addButtonMessage = () => {
         if (sendMessage.current) {
-            props.dispatch(addButtonMessageAC(sendMessage.current.value))
+            props.addButtonMessage(body)
+            //props.dispatch(addButtonMessageAC(sendMessage.current.value))
         }
         if (sendMessage.current) {
-            sendMessage.current.value = ''
+            props.sendMessage()
+            //sendMessage.current.value = ''
         }
     }
 
@@ -33,7 +37,6 @@ const Dialogs = (props: DialogsPropsType) => {
             </div>
             <div className={s.messages}>
                 {messagesElements}
-                {props.dispatch}
                 <div className={s.newMessage}>
                     <textarea className={s.textArea} placeholder="New Message" ref={sendMessage}/>
                     <button className={b.button} onClick={addButtonMessage}>Send Message</button>
