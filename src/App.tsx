@@ -22,14 +22,10 @@ function App(props: AppPropsType) {
         <div className="app-wrapper">
             <Header/>
             <Navbar/>
-            <Route path="/dialogs" render={() => <Dialogs
-                dialogPage={props.state.dialogPage}
-                dispatch={props.dispatch}
-            />}/>
-            <Route path="/profile" render={() => <Profile
-                        store={props.store}
-                    />
-                }
+            <Route path="/dialogs" render={() => <Dialogs dialogPage={props.state.dialogPage}
+                                                          dispatch={props.dispatch}/>}/>
+            <Route path="/profile" render={() => <Profile store={props.store}/>
+            }
             />
         </div>
     </BrowserRouter>;

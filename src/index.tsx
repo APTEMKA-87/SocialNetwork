@@ -19,7 +19,6 @@ export const rerenderTree = (state: RootStoreType) => {   // type RootStateType
 }
 
 rerenderTree(store.getState())
-
 store.subscribe(() => {
     let state = store.getState()
     rerenderTree(state)
