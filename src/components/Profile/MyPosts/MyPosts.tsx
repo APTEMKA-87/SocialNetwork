@@ -13,7 +13,8 @@ export type PostsType = {
 export type MyPostsPropsType = {
     posts: Array<PostsType>,
     newPostText: string,
-    dispatch: (action: ActionTypes) => void
+    onPostChange: (text: string) => void
+    addPost: () => void
 }
 
 const MyPosts: React.FC<MyPostsPropsType> = (props) => {
@@ -21,19 +22,12 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
     let postsElement =
         props.posts.map(p => <Post postFromPost={p.post} likeCount={p.likesCount}/>)  // key
 
-    let newPostElement =
-        React.createRef<HTMLTextAreaElement>()
-
     let addButtonPost = () => {
-        if (newPostElement.current) {
-            props.dispatch(addButtonPostAC())
-        }
+        props.addPost()
     }
 
     let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {     // why e unused?
-        if (newPostElement.current) {
-            props.dispatch(onPostChangeAC(newPostElement.current.value))
-        }
+        props.onPostChange(e.currentTarget.value)
     }
 
     return (
@@ -41,7 +35,7 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
             <div className={s.addPost}>
                 <textarea className={s.textArea}
                           onChange={onPostChange}
-                          ref={newPostElement}
+                          //ref={newPostElement}
                           value={props.newPostText}/>
                 <button className={s.button} onClick={addButtonPost}>Add Post</button>
             </div>

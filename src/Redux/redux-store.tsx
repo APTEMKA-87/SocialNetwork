@@ -10,3 +10,4 @@ export type RootStoreType = ReturnType<typeof reducers>
 let store: Store<RootStoreType, any> = createStore(reducers)    // type
 
 export default store;
+

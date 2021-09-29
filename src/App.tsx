@@ -6,11 +6,14 @@ import Profile from './components/Profile/Profile';
 import Dialogs from './components/Dialogs/Dialogs';
 import {BrowserRouter, Route} from 'react-router-dom';
 import {ActionTypes, RootStateType} from './Redux/Store';
+import {Store} from 'redux';
+import {RootStoreType} from './Redux/redux-store';
 
 
 type AppPropsType = {
     state: RootStateType,
     dispatch: (action: ActionTypes) => void
+    store: Store<RootStoreType, any>      // type
 }
 
 function App(props: AppPropsType) {
@@ -24,9 +27,10 @@ function App(props: AppPropsType) {
                 dispatch={props.dispatch}
             />}/>
             <Route path="/profile" render={() => <Profile
-                profilePage={props.state.profilePage}
-                dispatch={props.dispatch}
-            />}/>
+                        store={props.store}
+                    />
+                }
+            />
         </div>
     </BrowserRouter>;
 }
