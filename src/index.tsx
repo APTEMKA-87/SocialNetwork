@@ -5,7 +5,7 @@ import React from 'react';
 import App from './App';
 
 
-export const rerenderTree = (state: RootStoreType) => { // why unused state
+export const rerenderTree = (state: RootStoreType) => {   // type RootStateType
     ReactDOM.render(
         <React.StrictMode>
             <App
@@ -18,6 +18,7 @@ export const rerenderTree = (state: RootStoreType) => { // why unused state
 }
 
 rerenderTree(store.getState())
+
 store.subscribe(() => {
     let state = store.getState()
     rerenderTree(state)

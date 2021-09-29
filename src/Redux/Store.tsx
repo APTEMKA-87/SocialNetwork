@@ -1,4 +1,3 @@
-/*
 import ProfileReducer, {addButtonPostAC, onPostChangeAC} from './profile-reducer';
 import DialogsReducer, {addButtonMessageAC} from './dialogs-reducer';
 
@@ -90,7 +89,7 @@ const store: StoreType = {
     },
 
     subscribe(observer) {
-        this._callSubscriber = observer  // как обсервер видит изминения стора?
+        this._callSubscriber = observer
     },
     getState() {
         return this._state
@@ -104,7 +103,3 @@ const store: StoreType = {
 }
 
 export default store;
-
-
-*/
-export {}

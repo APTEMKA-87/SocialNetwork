@@ -1,7 +1,7 @@
 import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import Post from './Post/Post';
-import {ActionTypes} from '../../../Redux/State';
+import {ActionTypes} from '../../../Redux/Store';
 import {addButtonPostAC, onPostChangeAC} from '../../../Redux/profile-reducer';
 
 export type PostsType = {
@@ -18,9 +18,11 @@ export type MyPostsPropsType = {
 
 const MyPosts: React.FC<MyPostsPropsType> = (props) => {
 
-    let postsElement = props.posts.map(p => <Post postFromPost={p.post} likeCount={p.likesCount}/>)  // key
+    let postsElement =
+        props.posts.map(p => <Post postFromPost={p.post} likeCount={p.likesCount}/>)  // key
 
-    let newPostElement = React.createRef<HTMLTextAreaElement>()
+    let newPostElement =
+        React.createRef<HTMLTextAreaElement>()
 
     let addButtonPost = () => {
         if (newPostElement.current) {

@@ -2,7 +2,7 @@ import React from 'react';
 import s from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogItem';
 import MessageDialogs from './Message/Message';
-import {ActionTypes, DialogPageType} from '../../Redux/State';
+import {ActionTypes, DialogPageType} from '../../Redux/Store';
 import b from './../Profile/MyPosts/MyPosts.module.css'
 import {addButtonMessageAC} from '../../Redux/dialogs-reducer';
 
@@ -33,7 +33,6 @@ const Dialogs = (props: DialogsPropsType) => {
             </div>
             <div className={s.messages}>
                 {messagesElements}
-                {props.dispatch}
                 <div className={s.newMessage}>
                     <textarea className={s.textArea} placeholder="New Message" ref={sendMessage}/>
                     <button className={b.button} onClick={addButtonMessage}>Send Message</button>
