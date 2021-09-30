@@ -1,7 +1,7 @@
-import ProfileReducer, {addButtonPostAC, onPostChangeAC} from './profile-reducer';
-import DialogsReducer, {addButtonMessageAC} from './dialogs-reducer';
+import ProfileReducer, {addButtonPostACType, onPostChangeACType} from './profile-reducer';
+import DialogsReducer, {addButtonMessageACType, updateNewMessageACType} from './dialogs-reducer';
 
-export type PostsType = {
+type PostsType = {
     id: number,
     post: string,
     likesCount: number
@@ -17,7 +17,7 @@ export type MessagesType = {
     message: string
 }
 
-export type ProfilePageType = {
+type ProfilePageType = {
     posts: Array<PostsType>,
     newPostText: string
 }
@@ -25,6 +25,7 @@ export type ProfilePageType = {
 export type DialogPageType = {
     dialogs: Array<DialogsType>,
     messages: Array<MessagesType>
+    newMessage: string
 }
 
 export type RootStateType = {
@@ -43,11 +44,8 @@ export type StoreType = {
 export type ActionTypes =
     addButtonPostACType |
     addButtonMessageACType |
-    onPostChangeACType        //  type: 'UPDATE-NEW-POST-TEXT'
-
-type addButtonPostACType = ReturnType<typeof addButtonPostAC>
-type onPostChangeACType = ReturnType<typeof onPostChangeAC>
-type addButtonMessageACType = ReturnType<typeof addButtonMessageAC>
+    onPostChangeACType |      //  type: 'UPDATE-NEW-POST-TEXT'
+    updateNewMessageACType
 
 const store: StoreType = {
     _state: {
@@ -81,7 +79,8 @@ const store: StoreType = {
                 {id: 1, message: 'Hi'},
                 {id: 2, message: 'How r u?'},
                 {id: 3, message: 'Thank`s'}
-            ]
+            ],
+            newMessage: ''
         }
     },
     _callSubscriber() {
@@ -95,7 +94,7 @@ const store: StoreType = {
         return this._state
     },
 
-    dispatch(action) {
+    dispatch(action: any) {
         this._state.profilePage = ProfileReducer(this._state.profilePage, action)
         this._state.dialogPage = DialogsReducer(this._state.dialogPage, action)
         this._callSubscriber()

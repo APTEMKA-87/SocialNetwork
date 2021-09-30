@@ -7,7 +7,7 @@ let reducers = combineReducers({
     dialogPage:DialogsReducer
 })
 export type RootStoreType = ReturnType<typeof reducers>
-let store: Store<RootStoreType, any> = createStore(reducers)    // type
+let store: Store = createStore(reducers)    // type
 
 export default store;
 

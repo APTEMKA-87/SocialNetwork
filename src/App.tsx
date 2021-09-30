@@ -3,11 +3,11 @@ import './App.css';
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
-import Dialogs from './components/Dialogs/Dialogs';
 import {BrowserRouter, Route} from 'react-router-dom';
+import {RootStoreType} from './Redux/redux-store';
+import DialogContainer from './components/Dialogs/DialogContainer';
 import {ActionTypes, RootStateType} from './Redux/Store';
 import {Store} from 'redux';
-import {RootStoreType} from './Redux/redux-store';
 
 
 type AppPropsType = {
@@ -22,8 +22,7 @@ function App(props: AppPropsType) {
         <div className="app-wrapper">
             <Header/>
             <Navbar/>
-            <Route path="/dialogs" render={() => <Dialogs dialogPage={props.state.dialogPage}
-                                                          dispatch={props.dispatch}/>}/>
+            <Route path="/dialogs" render={() => <DialogContainer store={props.store}/>}/>
             <Route path="/profile" render={() => <Profile store={props.store}/>
             }
             />

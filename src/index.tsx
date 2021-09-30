@@ -1,5 +1,5 @@
 import './index.css';
-import store, {RootStoreType} from './Redux/redux-store';
+import store, {RootStoreType, } from './Redux/redux-store';
 import ReactDOM from 'react-dom';
 import React from 'react';
 import App from './App';

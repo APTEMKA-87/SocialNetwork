@@ -1,6 +1,10 @@
-import {ActionTypes, DialogPageType, MessagesType} from './Store';
+import {ActionTypes, DialogPageType} from './Store';
 
-const ADD_DIALOG = 'ADD-DIALOG'
+const SEND_MESSAGE = 'SEND_MESSAGE'
+const UPDATE_NEW_MESSAGE_BODY = 'UPDATE_NEW_MESSAGE_BODY'
+
+export type addButtonMessageACType = ReturnType<typeof addButtonMessageAC>
+export type updateNewMessageACType = ReturnType<typeof updateNewMessageBodyAC>
 
 let initialState = {
     dialogs: [
@@ -16,10 +20,11 @@ let initialState = {
         {id: 1, message: 'Hi'},
         {id: 2, message: 'How r u?'},
         {id: 3, message: 'Thank`s'}
-    ]
+    ],
+    newMessage: ''
 }
 
-const DialogsReducer = (state: DialogPageType = initialState, action: ActionTypes) => {
+/*const DialogsReducer = (state: DialogPageType = initialState, action: ActionTypes) => {
     switch (action.type) {
         case ADD_DIALOG:
             let newDialog: MessagesType = {
@@ -30,8 +35,24 @@ const DialogsReducer = (state: DialogPageType = initialState, action: ActionType
             break;
     }
     return state
-};
+};*/
 
-export const addButtonMessageAC = (dialogText: string) => ({type: 'ADD-DIALOG', dialogText} as const)
+const DialogsReducer = (state: DialogPageType = initialState, action: ActionTypes) => {
+    switch (action.type) {
+        case UPDATE_NEW_MESSAGE_BODY:
+            state.newMessage = action.body
+            return state
+        case SEND_MESSAGE:
+            let body = state.newMessage
+            state.newMessage = ''
+            state.messages.push({id: 6, message: body})
+            return state
+        default:
+            return state
+    }
+}
+
+export const addButtonMessageAC = () => ({type: SEND_MESSAGE} as const)
+export const updateNewMessageBodyAC = (body: string) => ({type: UPDATE_NEW_MESSAGE_BODY, body})
 
 export default DialogsReducer;
