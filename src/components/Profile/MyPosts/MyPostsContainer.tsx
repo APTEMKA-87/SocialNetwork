@@ -9,7 +9,7 @@ type MyPostContainerPropsType = {
     store: Store<RootStoreType, any>      // type ?
 }
 
-const MyPostContainer = (props: MyPostContainerPropsType) => {
+const MyPostsContainer = (props: MyPostContainerPropsType) => {
 
     let state = props.store.getState()
 
@@ -30,5 +30,5 @@ const MyPostContainer = (props: MyPostContainerPropsType) => {
     );
 };
 
-export default MyPostContainer;
+export default MyPostsContainer;
 
