@@ -12,7 +12,7 @@ type DialogsType = {
     name: string
 }
 
-export type MessagesType = {
+type MessagesType = {
     id: number,
     message: string
 }
@@ -22,18 +22,18 @@ type ProfilePageType = {
     newPostText: string
 }
 
-export type DialogPageType = {
+type DialogPageType = {
     dialogs: Array<DialogsType>,
     messages: Array<MessagesType>
     newMessage: string
 }
 
-export type RootStateType = {
+type RootStateType = {
     profilePage: ProfilePageType,
     dialogPage: DialogPageType
 }
 
-export type StoreType = {
+type StoreType = {
     _state: RootStateType,
     _callSubscriber: () => void
     subscribe: (observer: () => void) => void,

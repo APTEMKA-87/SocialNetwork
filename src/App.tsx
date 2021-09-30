@@ -5,8 +5,9 @@ import Navbar from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
 import {BrowserRouter, Route} from 'react-router-dom';
 import DialogContainer from './components/Dialogs/DialogContainer';
-import {ActionTypes, RootStateType} from './Redux/Store';
+import {ActionTypes} from './Redux/Store';
 import {Store} from 'redux';
+import {RootStateType} from './Redux/redux-store';
 
 
 type AppPropsType = {
