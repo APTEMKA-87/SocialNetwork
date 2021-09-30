@@ -1,14 +1,15 @@
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 
-export type ProfileInitialStateType = {
-    posts: Array<PostsType>,
-    newPostText: string
-}
 export type PostsType = {
     id: number,
     post: string,
     likesCount: number
+}
+
+export type ProfileInitialStateType = {
+    posts: Array<PostsType>,
+    newPostText: string
 }
 
 let initialState = {
