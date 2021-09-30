@@ -41,10 +41,10 @@ type StoreType = {
     dispatch: (action: ActionTypes) => void
 }
 
-export type ActionTypes =
+type ActionTypes =
     addButtonPostACType |
     addButtonMessageACType |
-    onPostChangeACType |      //  type: 'UPDATE-NEW-POST-TEXT'
+    onPostChangeACType |
     updateNewMessageACType
 
 const store: StoreType = {

@@ -29,7 +29,7 @@ let initialState = {
     newPostText: ''
 } as ProfileInitialStateType
 
-const ProfileReducer = (state: ProfileInitialStateType = initialState, action: ActionsType): ProfileInitialStateType => {
+const ProfileReducer = (state: ProfileInitialStateType = initialState, action: ActionsProfileType): ProfileInitialStateType => {
         switch (action.type) {
             case ADD_POST: {
                 let newPost: PostsType = {
@@ -54,7 +54,7 @@ const ProfileReducer = (state: ProfileInitialStateType = initialState, action: A
     }
 ;
 
-type ActionsType = onPostChangeACType | addButtonPostACType
+export type ActionsProfileType = onPostChangeACType | addButtonPostACType
 
 export type onPostChangeACType = ReturnType<typeof onPostChangeAC>
 export type addButtonPostACType = ReturnType<typeof addButtonPostAC>

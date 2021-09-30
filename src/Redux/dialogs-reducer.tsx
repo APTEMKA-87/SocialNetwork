@@ -1,5 +1,3 @@
-import {ActionTypes} from './Store';
-
 export type DialogsType = {
     id: number,
     name: string
@@ -19,8 +17,6 @@ export  type DialogPageType = {
 const SEND_MESSAGE = 'SEND_MESSAGE'
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE_NEW_MESSAGE_BODY'
 
-export type addButtonMessageACType = ReturnType<typeof addButtonMessageAC>
-export type updateNewMessageACType = ReturnType<typeof updateNewMessageBodyAC>
 
 let initialState = {
     dialogs: [
@@ -40,7 +36,7 @@ let initialState = {
     newMessage: ''
 }
 
-const DialogsReducer = (state: DialogPageType = initialState, action: ActionTypes) => {
+const DialogsReducer = (state: DialogPageType = initialState, action: ActionsDialogsType) => {
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_BODY:
             state.newMessage = action.body
@@ -54,6 +50,11 @@ const DialogsReducer = (state: DialogPageType = initialState, action: ActionType
             return state
     }
 }
+
+export type ActionsDialogsType = addButtonMessageACType | updateNewMessageACType
+
+export type addButtonMessageACType = ReturnType<typeof addButtonMessageAC>
+export type updateNewMessageACType = ReturnType<typeof updateNewMessageBodyAC>
 
 export const addButtonMessageAC = () => ({type: SEND_MESSAGE} as const)
 export const updateNewMessageBodyAC = (body: string) => ({type: UPDATE_NEW_MESSAGE_BODY, body})

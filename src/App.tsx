@@ -5,14 +5,16 @@ import Navbar from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
 import {BrowserRouter, Route} from 'react-router-dom';
 import DialogContainer from './components/Dialogs/DialogContainer';
-import {ActionTypes} from './Redux/Store';
 import {Store} from 'redux';
 import {RootStateType} from './Redux/redux-store';
+import {ActionsProfileType} from './Redux/profile-reducer';
+import {ActionsDialogsType} from './Redux/dialogs-reducer';
 
+export type RootActionsType = ActionsProfileType | ActionsDialogsType
 
 type AppPropsType = {
     state: RootStateType,
-    dispatch: (action: ActionTypes) => void
+    dispatch: (action: RootActionsType) => void
     store: Store
 }
 
