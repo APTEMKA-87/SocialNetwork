@@ -1,8 +1,6 @@
 import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import Post from './Post/Post';
-import {ActionTypes} from '../../../Redux/Store';
-import {addButtonPostAC, onPostChangeAC} from '../../../Redux/profile-reducer';
 
 export type PostsType = {
     id: number,
@@ -35,7 +33,6 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
             <div className={s.addPost}>
                 <textarea className={s.textArea}
                           onChange={onPostChange}
-                          //ref={newPostElement}
                           value={props.newPostText}/>
                 <button className={s.button} onClick={addButtonPost}>Add Post</button>
             </div>

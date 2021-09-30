@@ -6,7 +6,7 @@ import MyPosts from './MyPosts';
 
 
 type MyPostContainerPropsType = {
-    store: Store<RootStoreType, any>      // type
+    store: Store<RootStoreType, any>      // type ?
 }
 
 const MyPostContainer = (props: MyPostContainerPropsType) => {
