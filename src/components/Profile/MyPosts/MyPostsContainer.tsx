@@ -1,12 +1,11 @@
 import React from 'react';
 import {Store} from 'redux';
-import {RootStoreType} from '../../../Redux/redux-store';
 import {addButtonPostAC, onPostChangeAC} from '../../../Redux/profile-reducer';
 import MyPosts from './MyPosts';
 
 
 type MyPostContainerPropsType = {
-    store: Store<RootStoreType, any>      // type ?
+    store: Store
 }
 
 const MyPostsContainer = (props: MyPostContainerPropsType) => {

@@ -1,11 +1,11 @@
 import React from 'react';
 import Dialogs from './Dialogs';
 import {Store} from 'redux';
-import {RootStoreType} from '../../Redux/redux-store';
+import {RootStateType} from '../../Redux/redux-store';
 import {addButtonMessageAC, updateNewMessageBodyAC} from '../../Redux/dialogs-reducer';
 
 type DialogContainerPropsType = {
-    store: Store<RootStoreType, any>      // type?
+    store: Store<RootStateType, any>      // type?
 }
 
 const DialogContainer = (props: DialogContainerPropsType) => {

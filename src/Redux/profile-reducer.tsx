@@ -61,11 +61,4 @@ export type addButtonPostACType = ReturnType<typeof addButtonPostAC>
 export const addButtonPostAC = () => ({type: ADD_POST} as const)
 export const onPostChangeAC = (newText: string) => ({type: UPDATE_NEW_POST_TEXT, newText: newText} as const)
 
-/*export const onPostChangeAC = (newText: string) => {
-    return {
-        type: UPDATE_NEW_POST_TEXT,
-        newText: newText
-    } as const
-}*/
-
 export default ProfileReducer;

@@ -1,11 +1,10 @@
 import React from 'react';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import {Store} from 'redux';
-import {RootStoreType} from '../../Redux/redux-store';
 import MyPostsContainer from './MyPosts/MyPostsContainer';
 
 type PropsType = {
-    store: Store<RootStoreType, any>
+    store: Store
 
 }
 
