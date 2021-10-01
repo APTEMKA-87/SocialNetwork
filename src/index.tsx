@@ -1,26 +1,23 @@
 import './index.css';
-import store, {RootStateType, } from './Redux/redux-store';
+import store from './Redux/redux-store';
 import ReactDOM from 'react-dom';
 import React from 'react';
 import App from './App';
+import {Provider} from './StoreContext';
 
-
-export const rerenderTree = (state: RootStateType) => {
+export const rerenderTree = () => {
     ReactDOM.render(
         <React.StrictMode>
-            <App
-                state={state}
-                dispatch={store.dispatch.bind(store)}
-                store={store}
-            />
+            <Provider store={store}>
+                <App/>
+            </Provider>
         </React.StrictMode>,
         document.getElementById('root')
     );
 }
 
-rerenderTree(store.getState())
+rerenderTree()
 store.subscribe(() => {
-    let state = store.getState()
-    rerenderTree(state)
+    rerenderTree()
 })
 

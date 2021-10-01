@@ -1,31 +1,34 @@
 import React from 'react';
-import {Store} from 'redux';
 import {addButtonPostAC, onPostChangeAC} from '../../../Redux/profile-reducer';
 import MyPosts from './MyPosts';
+import StoreContext from '../../../StoreContext';
 
 
-type MyPostContainerPropsType = {
+/*type MyPostContainerPropsType = {
     store: Store
-}
+}*/
 
-const MyPostsContainer = (props: MyPostContainerPropsType) => {
-
-    let state = props.store.getState()
-
-    let addPost = () => {
-        props.store.dispatch(addButtonPostAC())
-    }
-
-    let onPostChange = (text: string) => {
-        props.store.dispatch(onPostChangeAC(text))
-    }
-
+const MyPostsContainer = () => {
     return (
-        <MyPosts onPostChange={onPostChange}
-                 addPost={addPost}
-                 posts={state.profilePage.posts}
-                 newPostText={state.profilePage.newPostText}
-        />
+        <StoreContext.Consumer>
+            {
+                (store) => {
+                    let state = store.getState()
+
+                    let addPost = () => {
+                        store.dispatch(addButtonPostAC())
+                    }
+
+                    let onPostChange = (text: string) => {
+                        store.dispatch(onPostChangeAC(text))
+                    }
+                    return <MyPosts onPostChange={onPostChange}
+                                    addPost={addPost}
+                                    posts={state.profilePage.posts}
+                                    newPostText={state.profilePage.newPostText}/>
+                }
+            }
+        </StoreContext.Consumer>
     );
 };
 
