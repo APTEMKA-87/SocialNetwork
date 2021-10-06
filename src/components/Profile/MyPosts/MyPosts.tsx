@@ -18,13 +18,13 @@ export type MyPostsPropsType = {
 const MyPosts: React.FC<MyPostsPropsType> = (props) => {
 
     let postsElement =
-        props.posts.map(p => <Post postFromPost={p.post} likeCount={p.likesCount}/>)  // key
+        props.posts.map(p => <Post postFromPost={p.post} key={p.id} likeCount={p.likesCount}/>)
 
     let addButtonPost = () => {
         props.addPost()
     }
 
-    let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {     // why e unused?
+    let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         props.onPostChange(e.currentTarget.value)
     }
 

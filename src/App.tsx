@@ -6,14 +6,6 @@ import Profile from './components/Profile/Profile';
 import {BrowserRouter, Route} from 'react-router-dom';
 import DialogContainer from './components/Dialogs/DialogContainer';
 
-/*export type RootActionsType = ActionsProfileType | ActionsDialogsType*/
-
-/*type AppPropsType = {
-    state: RootStateType,
-    dispatch: (action: RootActionsType) => void
-    store: Store
-}*/
-
 function App() {
     return <BrowserRouter>
         <div className="app-wrapper">

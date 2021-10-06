@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogItem';
 import MessageDialogs from './Message/Message';
@@ -15,15 +15,15 @@ const Dialogs = (props: DialogsPropsType) => {
 
     let state = props.dialogPage
 
-    let dialogElements = state.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>)
-    let messagesElements = state.messages.map(m => <MessageDialogs messageDialog={m.message}/>)
+    let dialogElements = state.dialogs.map(d => <DialogItem name={d.name} key={d.id} id={d.id}/>)
+    let messagesElements = state.messages.map(m => <MessageDialogs messageDialog={m.message} key={m.id}/>)
     let newMessageBody = state.newMessage
 
     const onSendMessageClick = () => {
         props.sendMessage()
     }
 
-    const onNewMessageChange = (e: any) => {
+    const onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let body = e.target.value
         props.updateNewMessageBody(body)
     }
