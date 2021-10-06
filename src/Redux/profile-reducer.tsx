@@ -37,29 +37,30 @@ const ProfileReducer = (state: ProfileInitialStateType = initialState, action: A
                     post: state.newPostText,
                     likesCount: 0
                 }
-                let stateCopy = {...state}
-                stateCopy.posts = [...state.posts]
-                stateCopy.posts.push(newPost)
-                stateCopy.newPostText = ''
-                return stateCopy
+                return {
+                    ...state,
+                    posts: [...state.posts, newPost],
+                    newPostText: ''
+                }
             }
             case UPDATE_NEW_POST_TEXT: {
-                let stateCopy = {...state}
-                stateCopy.newPostText = action.newText
-                return stateCopy
+                return {
+                    ...state,
+                    newPostText: action.newText
+                }
             }
             default:
                 return state
         }
     }
-    ;
+;
 
-    export type ActionsProfileType = onPostChangeACType | addButtonPostACType
+export type ActionsProfileType = onPostChangeACType | addButtonPostACType
 
-    export type onPostChangeACType = ReturnType<typeof onPostChangeAC>
-    export type addButtonPostACType = ReturnType<typeof addButtonPostAC>
+export type onPostChangeACType = ReturnType<typeof onPostChangeAC>
+export type addButtonPostACType = ReturnType<typeof addButtonPostAC>
 
-    export const addButtonPostAC = () => ({type: ADD_POST} as const)
-    export const onPostChangeAC = (newText: string) => ({type: UPDATE_NEW_POST_TEXT, newText: newText} as const)
+export const addButtonPostAC = () => ({type: ADD_POST} as const)
+export const onPostChangeAC = (newText: string) => ({type: UPDATE_NEW_POST_TEXT, newText: newText} as const)
 
-    export default ProfileReducer;
+export default ProfileReducer;

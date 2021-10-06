@@ -1,7 +1,6 @@
-import {addButtonPostAC, onPostChangeAC} from '../../../Redux/profile-reducer';
+import {ActionsProfileType, addButtonPostAC, onPostChangeAC} from '../../../Redux/profile-reducer';
 import MyPosts from './MyPosts';
 import {RootStateType} from '../../../Redux/redux-store';
-import {RootActionsType} from '../../Dialogs/DialogContainer';
 import {connect} from 'react-redux';
 
 let mapStateToProps = (state: RootStateType) => {
@@ -11,7 +10,7 @@ let mapStateToProps = (state: RootStateType) => {
     }
 }
 
-let mapDispatchToProps = (dispatch: (action: RootActionsType) => void) => {    // правильно ли я типизировал?
+let mapDispatchToProps = (dispatch: (action: ActionsProfileType) => void) => {    // правильно ли я типизировал?
     return {
         onPostChange: (text: string) => {
             dispatch(onPostChangeAC(text))
