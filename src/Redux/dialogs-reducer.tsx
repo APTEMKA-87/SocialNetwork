@@ -17,7 +17,6 @@ export  type DialogPageType = {
 const SEND_MESSAGE = 'SEND_MESSAGE'
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE_NEW_MESSAGE_BODY'
 
-
 let initialState = {
     dialogs: [
         {id: 1, name: 'Bob'},
