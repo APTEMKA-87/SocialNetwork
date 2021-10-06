@@ -5,6 +5,7 @@ export type LocationType = {
 
 export type UserType = {
     id: number,
+    photoUrl: string,
     followed: boolean,
     fullName: string,
     status: string
@@ -23,6 +24,7 @@ let initialState = {
     users: [
         {
             id: 1,
+            photoUrl: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.ru%2Fpin%2F648025833876393957%2F&psig=AOvVaw2oOxtnNl8H5U1LyG1pBZyI&ust=1633641843577000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCLDs0IDctvMCFQAAAAAdAAAAABAD',
             followed: false,
             fullName: 'Dima',
             status: 'I am boss',
@@ -30,6 +32,7 @@ let initialState = {
         },
         {
             id: 2,
+            photoUrl: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.ru%2Fpin%2F648025833876393957%2F&psig=AOvVaw2oOxtnNl8H5U1LyG1pBZyI&ust=1633641843577000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCLDs0IDctvMCFQAAAAAdAAAAABAD',
             followed: true,
             fullName: 'Bob',
             status: 'I am boss too',
@@ -37,6 +40,7 @@ let initialState = {
         },
         {
             id: 3,
+            photoUrl: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.ru%2Fpin%2F648025833876393957%2F&psig=AOvVaw2oOxtnNl8H5U1LyG1pBZyI&ust=1633641843577000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCLDs0IDctvMCFQAAAAAdAAAAABAD',
             followed: false,
             fullName: 'Don',
             status: 'I am superBoss',
