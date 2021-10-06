@@ -1,34 +1,29 @@
-import React from 'react';
 import Dialogs from './Dialogs';
-import {addButtonMessageAC, updateNewMessageBodyAC} from '../../Redux/dialogs-reducer';
-import StoreContext from '../../StoreContext';
+import {ActionsDialogsType, addButtonMessageAC, updateNewMessageBodyAC} from '../../Redux/dialogs-reducer';
+import {connect} from 'react-redux';
+import {RootStateType} from '../../Redux/redux-store';
+import {ActionsProfileType} from '../../Redux/profile-reducer';
 
-/*type DialogContainerPropsType = {
-    store: Store
-}*/
+export type RootActionsType = ActionsProfileType | ActionsDialogsType // где хранить типизацию?
 
-const DialogContainer = () => {
-    return (
-        <StoreContext.Consumer>
-            {
-                (store) => {
+let mapStateToProps = (state: RootStateType) => {
+    return {
+        dialogPage: state.dialogPage
+    }
+}
 
-                    const onSendMessageClick = () => {
-                        store.dispatch(addButtonMessageAC())
-                    }
+let mapDispatchToProps = (dispatch: (action: RootActionsType) => void) => {    // правильно ли я типизировал?
+    return {
+        updateNewMessageBody: (body: string) => {
+            dispatch(updateNewMessageBodyAC(body))
+        },
+        sendMessage: ()=>{
+            dispatch(addButtonMessageAC())
+        }
+    }
+}
 
-                    const onNewMessageChange = (body: string) => {
-                        store.dispatch(updateNewMessageBodyAC(body))
-                    }
+const DialogContainer = connect(mapStateToProps,mapDispatchToProps)(Dialogs)
 
-                    let state = store.getState().dialogPage
-                    return <Dialogs updateNewMessageBody={onNewMessageChange}
-                                    sendMessage={onSendMessageClick}
-                                    dialogPage={state}/>
-                }
-            }
-        </StoreContext.Consumer>
-    );
-};
 
 export default DialogContainer;

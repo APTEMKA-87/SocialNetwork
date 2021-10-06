@@ -1,36 +1,28 @@
-import React from 'react';
 import {addButtonPostAC, onPostChangeAC} from '../../../Redux/profile-reducer';
 import MyPosts from './MyPosts';
-import StoreContext from '../../../StoreContext';
+import {RootStateType} from '../../../Redux/redux-store';
+import {RootActionsType} from '../../Dialogs/DialogContainer';
+import {connect} from 'react-redux';
 
+let mapStateToProps = (state: RootStateType) => {
+    return {
+        posts: state.profilePage.posts,
+        newPostText: state.profilePage.newPostText
+    }
+}
 
-/*type MyPostContainerPropsType = {
-    store: Store
-}*/
+let mapDispatchToProps = (dispatch: (action: RootActionsType) => void) => {    // правильно ли я типизировал?
+    return {
+        onPostChange: (text: string) => {
+            dispatch(onPostChangeAC(text))
+        },
+        addPost: () => {
+            dispatch(addButtonPostAC())
+        }
+    }
+}
 
-const MyPostsContainer = () => {
-    return (
-        <StoreContext.Consumer>
-            {
-                (store) => {
-                    let state = store.getState()
-
-                    let addPost = () => {
-                        store.dispatch(addButtonPostAC())
-                    }
-
-                    let onPostChange = (text: string) => {
-                        store.dispatch(onPostChangeAC(text))
-                    }
-                    return <MyPosts onPostChange={onPostChange}
-                                    addPost={addPost}
-                                    posts={state.profilePage.posts}
-                                    newPostText={state.profilePage.newPostText}/>
-                }
-            }
-        </StoreContext.Consumer>
-    );
-};
+const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
 
 export default MyPostsContainer;
 
