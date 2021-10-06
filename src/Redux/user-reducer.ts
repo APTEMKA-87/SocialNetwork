@@ -20,7 +20,7 @@ const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
 
 let initialState = {
-    users: [/*
+    users: [
         {
             id: 1,
             followed: false,
@@ -41,7 +41,7 @@ let initialState = {
             fullName: 'Don',
             status: 'I am superBoss',
             location: {city: 'Moscow', country: 'Russia'}
-        },*/
+        },
     ]
 }
 
@@ -81,8 +81,8 @@ export type followACType = ReturnType<typeof followAC>
 export type unfollowACType = ReturnType<typeof unfollowAC>
 export type setUsersACType = ReturnType<typeof setUsersAC>
 
-export const followAC = (userId: number) => ({type: FOLLOW, userId})
-export const unfollowAC = (userId: number) => ({type: UNFOLLOW, userId})
-export const setUsersAC = (users: any) => ({type: SET_USERS, users})
+export const followAC = (userId: number) => ({type: FOLLOW, userId} as const)
+export const unfollowAC = (userId: number) => ({type: UNFOLLOW, userId} as const)
+export const setUsersAC = (users: any) => ({type: SET_USERS, users} as const)
 
 export default usersReducer
