@@ -1,47 +1,29 @@
 import React from 'react';
 import styles from './users.module.css'
-import {UsersPropsType} from './UsersContainer';
+import axios from 'axios';
+import userPhoto from '../../img/user_photo.png'
+import {UserType} from '../../Redux/user-reducer';
 
+type PropsType = {
+    users: Array<UserType>
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void,
+    setUsers: (users: Array<UserType>) => void
+}
 
-const Users = (props: UsersPropsType) => {
-
+const Users = (props: PropsType) => {
     if (props.users.length === 0) {
-        props.setUsers(
-            [
-                {
-                    id: 1,
-                    photoUrl: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.ru%2Fpin%2F648025833876393957%2F&psig=AOvVaw2oOxtnNl8H5U1LyG1pBZyI&ust=1633641843577000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCLDs0IDctvMCFQAAAAAdAAAAABAD',
-                    followed: false,
-                    fullName: 'Jack',
-                    status: 'I am boss',
-                    location: {city: 'Minsk', country: 'Belarus'}
-                },
-                {
-                    id: 2,
-                    photoUrl: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.ru%2Fpin%2F648025833876393957%2F&psig=AOvVaw2oOxtnNl8H5U1LyG1pBZyI&ust=1633641843577000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCLDs0IDctvMCFQAAAAAdAAAAABAD',
-                    followed: true,
-                    fullName: 'Bob',
-                    status: 'I am boss too',
-                    location: {city: 'Kiev', country: 'Ukraine'}
-                },
-                {
-                    id: 3,
-                    photoUrl: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.ru%2Fpin%2F648025833876393957%2F&psig=AOvVaw2oOxtnNl8H5U1LyG1pBZyI&ust=1633641843577000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCLDs0IDctvMCFQAAAAAdAAAAABAD',
-                    followed: false,
-                    fullName: 'Don',
-                    status: 'I am superBoss',
-                    location: {city: 'Moscow', country: 'Russia'}
-                },
-            ]
-        )
+        axios.get<any>('https://social-network.samuraijs.com/api/1.0/users').then(responce => {
+            props.setUsers(responce.data.items)
+        })
     }
-
     return <div>
         {
             props.users.map(u => <div key={u.id}>
                     <span>
                             <div>
-                                 <img src={u.photoUrl} className={styles.userPhoto} alt={''}/>
+                                 <img src={u.photos.small != null ? u.photos.small : userPhoto}
+                                      className={styles.userPhoto} alt={''}/>
                              </div>
                               <div>
                             {u.followed
@@ -55,12 +37,12 @@ const Users = (props: UsersPropsType) => {
                     </span>
                 <span>
                         <span>
-                             <div>{u.fullName}</div>
+                             <div>{u.name}</div>
                             <div>{u.status}</div>
                         </span>
                         <span>
-                                <div>{u.location.country}</div>
-                                <div>{u.location.city}</div>
+                                <div>{'u.location.country'}</div>
+                                <div>{'u.location.city'}</div>
                         </span>
                     </span>
             </div>)

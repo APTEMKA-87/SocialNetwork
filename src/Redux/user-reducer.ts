@@ -1,15 +1,14 @@
-export type LocationType = {
-    city: string,
-    country: string
+type PhotosType = {
+    small: string
+    large: string
 }
 
 export type UserType = {
-    id: number,
-    photoUrl: string,
-    followed: boolean,
-    fullName: string,
+    id: number
+    photos: PhotosType
+    followed: boolean
+    name: string
     status: string
-    location: LocationType
 }
 
 export type UsersType = {
@@ -24,7 +23,7 @@ const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
 
-const usersReducer = (state: UsersType = initialState , action: ActionsUsersType): UsersType => {
+const usersReducer = (state: UsersType = initialState, action: ActionsUsersType): UsersType => {
     switch (action.type) {
         case FOLLOW:
             return {
