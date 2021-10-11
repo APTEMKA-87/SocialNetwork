@@ -10,21 +10,24 @@ type PropsType = {
     unfollow: (userId: number) => void
     setUsers: (users: Array<UserType>) => void
 }
- type ResponseType = {
-     items: Array<UserType>,
-     totalCount: number,
-     error: string
- }
+type ResponseType = {
+    items: Array<UserType>,
+    totalCount: number,
+    error: string
+}
 
 const Users = (props: PropsType) => {
 
-    if (props.users.length === 0) {
-        axios.get<ResponseType>('https://social-network.samuraijs.com/api/1.0/users').then(response => {
-            props.setUsers(response.data.items)
-        })
+    let getUsers = () => {
+        if (props.users.length === 0) {
+            axios.get<ResponseType>('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+                props.setUsers(response.data.items)
+            })
+        }
     }
 
     return <div>
+        <button onClick={getUsers}>Get users</button>
         {
             props.users.map(u => <div key={u.id}>
                     <span>
