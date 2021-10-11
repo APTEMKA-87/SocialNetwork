@@ -4,7 +4,7 @@ import axios from 'axios';
 import userPhoto from '../../img/user_photo.png'
 import {UserType} from '../../Redux/user-reducer';
 
-type PropsType = {                // ?
+type PropsType = {
     users: Array<UserType>
     follow: (userId: number) => void
     unfollow: (userId: number) => void
@@ -19,7 +19,7 @@ type PropsType = {                // ?
 const Users = (props: PropsType) => {
 
     if (props.users.length === 0) {
-        axios.get<ResponseType>('https://social-network.samuraijs.com/api/1.0/users').then(response => {  // any
+        axios.get<ResponseType>('https://social-network.samuraijs.com/api/1.0/users').then(response => {
             props.setUsers(response.data.items)
         })
     }
@@ -35,7 +35,7 @@ const Users = (props: PropsType) => {
                               <div>
                             {u.followed
                                 ? <button onClick={() => {
-                                    props.unfollow(u.id)        //  меняется  1 раз
+                                    props.unfollow(u.id)
                                 }}>Unfollow</button>
                                 : <button onClick={() => {
                                     props.follow(u.id)

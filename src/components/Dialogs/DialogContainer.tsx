@@ -1,19 +1,25 @@
 import Dialogs from './Dialogs';
-import {addButtonMessageAC, updateNewMessageBodyAC} from '../../Redux/dialogs-reducer';
+import {addButtonMessageAC, DialogPageType, updateNewMessageBodyAC} from '../../Redux/dialogs-reducer';
 import {connect} from 'react-redux';
 import {RootStateType} from '../../Redux/redux-store';
 import {Dispatch} from 'redux';
 
+type MapStateToPropsType = {
+    dialogPage: DialogPageType
+}
 
-// типизировать здесь или норм, что mapStateToProps mapDispatchToProps?
+type MapDispatchToProps = {
+    updateNewMessageBody: (body: string) => void
+    sendMessage: () => void
+}
 
-let mapStateToProps = (state: RootStateType) => {
+let mapStateToProps = (state: RootStateType): MapStateToPropsType => {
     return {
         dialogPage: state.dialogPage
     }
 }
 
-let mapDispatchToProps = (dispatch: Dispatch) => {    // правильно ли я типизировал?
+let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToProps => {
     return {
         updateNewMessageBody: (body: string) => {
             dispatch(updateNewMessageBodyAC(body))
