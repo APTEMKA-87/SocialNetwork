@@ -16,17 +16,20 @@ type ResponseType = {
     error: string
 }
 
-class Users extends React.Component <PropsType, any>{        // type?
+class Users extends React.Component <PropsType, any> {        // type?
 
-    constructor(props: PropsType) {      // type?
+    /*constructor(props: PropsType) {      // type?
         super(props);
+    }*/
 
+    componentDidMount() {
         axios.get<ResponseType>('https://social-network.samuraijs.com/api/1.0/users').then(response => {
             this.props.setUsers(response.data.items)
         })
     }
 
-       render() {
+
+    render() {
         return <div>
             {
                 this.props.users.map(u => <div key={u.id}>
