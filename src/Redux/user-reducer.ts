@@ -3,7 +3,7 @@ type PhotosType = {
     large: string
 }
 
-export type UserType = {
+export type UserType = {   // где должна быть эта типизация?
     id: number
     photos: PhotosType
     followed: boolean

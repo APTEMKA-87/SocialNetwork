@@ -1,10 +1,8 @@
 import Users from './Users';
 import {connect} from 'react-redux';
 import {RootStateType} from '../../Redux/redux-store';
-import {followAC, setUsersAC, UserType} from '../../Redux/user-reducer';
+import {followAC, setUsersAC, unfollowAC, UserType} from '../../Redux/user-reducer';
 import {Dispatch} from 'redux';
-
-type TOwnProps = {}
 
 type MapStateToPropsType = {
     users: Array<UserType>
@@ -28,12 +26,12 @@ let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToProps => {
             dispatch(followAC(userId))
         },
         unfollow: (userId: number) => {
-            dispatch(followAC(userId))
+            dispatch(unfollowAC(userId))
         },
-        setUsers: (users: Array<UserType>) => {
+        setUsers: (users: Array<UserType>) => {  // загрузка, установка юзеров
             dispatch(setUsersAC(users))
         }
     }
 }
 
-export default connect<MapStateToPropsType,MapDispatchToProps,TOwnProps ,RootStateType>(mapStateToProps, mapDispatchToProps)(Users);
+export default connect(mapStateToProps, mapDispatchToProps)(Users); //?

@@ -1,11 +1,11 @@
 export type PostsType = {
-    id: number,
-    post: string,
+    id: number
+    post: string
     likesCount: number
 }
 
 export type ProfileInitialStateType = {
-    posts: Array<PostsType>,
+    posts: Array<PostsType>
     newPostText: string
 }
 

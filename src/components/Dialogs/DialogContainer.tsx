@@ -1,7 +1,11 @@
 import Dialogs from './Dialogs';
-import {ActionsDialogsType, addButtonMessageAC, updateNewMessageBodyAC} from '../../Redux/dialogs-reducer';
+import {addButtonMessageAC, updateNewMessageBodyAC} from '../../Redux/dialogs-reducer';
 import {connect} from 'react-redux';
 import {RootStateType} from '../../Redux/redux-store';
+import {Dispatch} from 'redux';
+
+
+// типизировать здесь или норм, что mapStateToProps mapDispatchToProps?
 
 let mapStateToProps = (state: RootStateType) => {
     return {
@@ -9,17 +13,17 @@ let mapStateToProps = (state: RootStateType) => {
     }
 }
 
-let mapDispatchToProps = (dispatch: (action: ActionsDialogsType) => void) => {    // правильно ли я типизировал?
+let mapDispatchToProps = (dispatch: Dispatch) => {    // правильно ли я типизировал?
     return {
         updateNewMessageBody: (body: string) => {
             dispatch(updateNewMessageBodyAC(body))
         },
-        sendMessage: ()=>{
+        sendMessage: () => {
             dispatch(addButtonMessageAC())
         }
     }
 }
 
-const DialogContainer = connect(mapStateToProps,mapDispatchToProps)(Dialogs)
+const DialogContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs) // ?
 
 export default DialogContainer;

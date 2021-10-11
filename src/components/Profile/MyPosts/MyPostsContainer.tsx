@@ -1,7 +1,12 @@
-import {ActionsProfileType, addButtonPostAC, onPostChangeAC} from '../../../Redux/profile-reducer';
+import {addButtonPostAC, onPostChangeAC} from '../../../Redux/profile-reducer';
 import MyPosts from './MyPosts';
 import {RootStateType} from '../../../Redux/redux-store';
 import {connect} from 'react-redux';
+import {Dispatch} from 'redux';
+
+
+// типизация написать есть в ЮзерКонтейнер
+
 
 let mapStateToProps = (state: RootStateType) => {
     return {
@@ -10,7 +15,7 @@ let mapStateToProps = (state: RootStateType) => {
     }
 }
 
-let mapDispatchToProps = (dispatch: (action: ActionsProfileType) => void) => {    // правильно ли я типизировал?
+let mapDispatchToProps = (dispatch: Dispatch) => {
     return {
         onPostChange: (text: string) => {
             dispatch(onPostChangeAC(text))
