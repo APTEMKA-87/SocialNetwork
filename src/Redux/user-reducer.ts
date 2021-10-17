@@ -13,10 +13,16 @@ export type UserType = {   // где должна быть эта типизац
 
 export type UsersType = {
     users: Array<UserType>
+    pageSize: number
+    totalUserCount: number
+    currenPage: number
 }
 
 const initialState = {
-    users: []
+    users: [],
+    pageSize: 5,
+    totalUserCount: 21,
+    currenPage: 2
 }
 
 const FOLLOW = 'FOLLOW'
