@@ -57,10 +57,10 @@ const ProfileReducer = (state: ProfileInitialStateType = initialState, action: A
 
 export type ActionsProfileType = onPostChangeACType | addButtonPostACType
 
-export type onPostChangeACType = ReturnType<typeof onPostChangeAC>
-export type addButtonPostACType = ReturnType<typeof addButtonPostAC>
+export type onPostChangeACType = ReturnType<typeof onPostChange>
+export type addButtonPostACType = ReturnType<typeof addPost>
 
-export const addButtonPostAC = () => ({type: ADD_POST} as const)
-export const onPostChangeAC = (newText: string) => ({type: UPDATE_NEW_POST_TEXT, newText: newText} as const)
+export const addPost = () => ({type: ADD_POST} as const)
+export const onPostChange = (newText: string) => ({type: UPDATE_NEW_POST_TEXT, newText: newText} as const)
 
 export default ProfileReducer;

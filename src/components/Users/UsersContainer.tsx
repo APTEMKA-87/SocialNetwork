@@ -1,18 +1,17 @@
 import {connect} from 'react-redux';
 import {RootStateType} from '../../Redux/redux-store';
 import {
-    followAC,
-    setCurrentPageAC,
-    setTotalUsersCountAC,
-    setUsersAC, toggleIsFetchingAC,
-    unfollowAC,
+    follow,
+    setCurrentPage,
+    setTotalUsersCount,
+    setUsers,
+    toggleIsFetching,
+    unfollow,
     UserType
 } from '../../Redux/user-reducer';
-import {Dispatch} from 'redux';
 import React from 'react';
 import axios from 'axios';
 import Users from './Users';
-import preloader from './../../img/Prelouder.gif'
 import Preloader from '../common/Preloader/preloader';
 
 type MapStateToPropsType = {
@@ -21,15 +20,6 @@ type MapStateToPropsType = {
     totalUserCount: number
     currenPage: number
     isFetching: boolean
-}
-
-type MapDispatchToProps = {
-    follow: (userId: number) => void
-    unfollow: (userId: number) => void,
-    setUsers: (users: Array<UserType>) => void
-    setCurrentPage: (pageNumber: number) => void
-    setTotalUsersCount: (totalCount: number) => void
-    toggleIsFetching: (isFetching: boolean) => void
 }
 
 type PropsType = {
@@ -98,27 +88,8 @@ let mapStateToProps = (state: RootStateType): MapStateToPropsType => {
     }
 }
 
-let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToProps => {
-    return {
-        follow: (userId: number) => {
-            dispatch(followAC(userId))
-        },
-        unfollow: (userId: number) => {
-            dispatch(unfollowAC(userId))
-        },
-        setUsers: (users: Array<UserType>) => {          // загрузка, установка юзеров
-            dispatch(setUsersAC(users))
-        },
-        setCurrentPage: (pageNumber: number) => {        // выбираем текущую страницу
-            dispatch(setCurrentPageAC(pageNumber))
-        },
-        setTotalUsersCount: (totalCount: number) => {     // сетаем кол-во юзеров по страницам
-            dispatch(setTotalUsersCountAC(totalCount))
-        },
-        toggleIsFetching: (isFetching:boolean) => {
-            dispatch(toggleIsFetchingAC(isFetching))
-        }
+export default connect(mapStateToProps,
+    {
+        follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching
     }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer); //?
+)(UsersContainer); //?

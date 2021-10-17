@@ -57,10 +57,10 @@ const DialogsReducer = (state: DialogPageType = initialState, action: ActionsDia
 
 export type ActionsDialogsType = addButtonMessageACType | updateNewMessageACType
 
-export type addButtonMessageACType = ReturnType<typeof addButtonMessageAC>
-export type updateNewMessageACType = ReturnType<typeof updateNewMessageBodyAC>
+export type addButtonMessageACType = ReturnType<typeof sendMessage>
+export type updateNewMessageACType = ReturnType<typeof updateNewMessageBody>
 
-export const addButtonMessageAC = () => ({type: SEND_MESSAGE} as const)
-export const updateNewMessageBodyAC = (body: string) => ({type: UPDATE_NEW_MESSAGE_BODY, body})
+export const sendMessage = () => ({type: SEND_MESSAGE} as const)
+export const updateNewMessageBody = (body: string) => ({type: UPDATE_NEW_MESSAGE_BODY, body})
 
 export default DialogsReducer;
