@@ -12,6 +12,7 @@ type PropsType = {
     totalUserCount: number
     pageSize: number
     currenPage: number
+    setCurrentPage: (pageNumber: number) => void
 }
 
 type ResponseType = {
@@ -39,7 +40,10 @@ class Users extends React.Component <PropsType, any> {        // type?
         return <div>
             <div>
                 {pages.map(p => {
-                    return  <span className={this.props.currenPage === p && styles.selectedPage || ''} >{p}</span>
+                    return  <span
+                        className={this.props.currenPage === p && styles.selectedPage || ''}
+                        onClick={() => {this.props.setCurrentPage(p)}}
+                    >{p}</span>
                 })}
             </div>
             {
