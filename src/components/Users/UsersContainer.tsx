@@ -13,6 +13,7 @@ import React from 'react';
 import axios from 'axios';
 import Users from './Users';
 import preloader from './../../img/Prelouder.gif'
+import Preloader from '../common/Preloader/preloader';
 
 type MapStateToPropsType = {
     users: Array<UserType>
@@ -74,7 +75,7 @@ class UsersContainer extends React.Component <PropsType, any> {        // type?
     render() {
 
         return <>
-            {this.props.isFetching ? <img src={preloader}/> : null}
+            {this.props.isFetching ? <Preloader/> : null}
             <Users totalUserCount={this.props.totalUserCount}
                    pageSize={this.props.pageSize}
                    currenPage={this.props.currenPage}
