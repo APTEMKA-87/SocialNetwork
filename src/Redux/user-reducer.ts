@@ -22,7 +22,7 @@ const initialState = {
     users: [],
     pageSize: 5,
     totalUserCount: 0,
-    currenPage: 2
+    currenPage: 1
 }
 
 const FOLLOW = 'FOLLOW'

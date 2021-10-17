@@ -1,4 +1,4 @@
-import Users from './Users';
+import UsersApiComponent from './UsersApiComponent';
 import {connect} from 'react-redux';
 import {RootStateType} from '../../Redux/redux-store';
 import {
@@ -55,4 +55,4 @@ let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToProps => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Users); //?
+export default connect(mapStateToProps, mapDispatchToProps)(UsersApiComponent); //?
