@@ -3,7 +3,7 @@ type PhotosType = {
     large: string
 }
 
-export type UserType = {   // где должна быть эта типизация?
+export type UserType = {
     id: number
     photos: PhotosType
     followed: boolean
@@ -83,7 +83,7 @@ export const followAC = (userId: number) => ({type: FOLLOW, userId} as const)
 export const unfollowAC = (userId: number) => ({type: UNFOLLOW, userId} as const)
 export const setUsersAC = (users: Array<UserType>) => ({type: SET_USERS, users} as const)
 export const setCurrentPageAC = (currenPage: number) => ({type: SET_CURRENT_PAGE, currenPage} as const)
-export const setTotalUsersCountAC = (totalCount: number) => ({type: SET_TOTAL_USERS_COUNT, totalCount} as const)
+export const setTotalUsersCountAC = (totalUserCount: number) => ({type: SET_TOTAL_USERS_COUNT, totalCount: totalUserCount} as const)
 
 
 export default usersReducer
