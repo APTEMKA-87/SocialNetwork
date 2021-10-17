@@ -1,7 +1,14 @@
 import Users from './Users';
 import {connect} from 'react-redux';
 import {RootStateType} from '../../Redux/redux-store';
-import {followAC, setCurrentPageAC, setTotalUsersCountAC, setUsersAC, unfollowAC, UserType} from '../../Redux/user-reducer';
+import {
+    followAC,
+    setCurrentPageAC,
+    setTotalUsersCountAC,
+    setUsersAC,
+    unfollowAC,
+    UserType
+} from '../../Redux/user-reducer';
 import {Dispatch} from 'redux';
 
 type MapStateToPropsType = {
@@ -36,13 +43,13 @@ let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToProps => {
         unfollow: (userId: number) => {
             dispatch(unfollowAC(userId))
         },
-        setUsers: (users: Array<UserType>) => {  // загрузка, установка юзеров
+        setUsers: (users: Array<UserType>) => {          // загрузка, установка юзеров
             dispatch(setUsersAC(users))
         },
-        setCurrentPage: (pageNumber: number) => {
+        setCurrentPage: (pageNumber: number) => {        // выбираем текущую страницу
             dispatch(setCurrentPageAC(pageNumber))
         },
-        setTotalUsersCount: (totalCount: number) => {
+        setTotalUsersCount: (totalCount: number) => {     // сетаем кол-во юзеров по страницам
             dispatch(setTotalUsersCountAC(totalCount))
         }
     }
