@@ -13,6 +13,7 @@ type PropsType = {
     pageSize: number
     currenPage: number
     setCurrentPage: (pageNumber: number) => void
+    setTotalUsersCount: (totalCount: number) => void
 }
 
 type ResponseType = {
@@ -26,6 +27,7 @@ class Users extends React.Component <PropsType, any> {        // type?
     componentDidMount() {
         axios.get<ResponseType>(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currenPage}&count=${this.props.pageSize}`).then(response => {
             this.props.setUsers(response.data.items)
+            this.props.setTotalUsersCount(response.data.totalCount)
         })
     }
 
