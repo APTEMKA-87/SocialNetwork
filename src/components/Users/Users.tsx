@@ -4,7 +4,7 @@ import userPhoto from '../../img/user_photo.png';
 import {UserType} from '../../Redux/user-reducer';
 import { NavLink } from 'react-router-dom';
 
-type PropsType = {
+type UsersPropsType = {
     users: Array<UserType>
     follow: (userId: number) => void
     unfollow: (userId: number) => void
@@ -14,7 +14,7 @@ type PropsType = {
     onPostChanged: (pageNumber: number) => void
 }
 
-const Users = (props: PropsType) => {
+const Users = (props: UsersPropsType) => {
 
     let pagesCount = Math.ceil(props.totalUserCount / props.pageSize)
     let pages = []

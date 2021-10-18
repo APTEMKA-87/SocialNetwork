@@ -84,7 +84,7 @@ let mapStateToProps = (state: RootStateType): MapStateToPropsType => {
         pageSize: state.usersPage.pageSize,
         totalUserCount: state.usersPage.totalUserCount,
         currenPage: state.usersPage.currenPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
     }
 }
 
