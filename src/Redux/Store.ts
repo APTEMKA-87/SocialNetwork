@@ -1,4 +1,4 @@
-import ProfileReducer, {addButtonPostACType, onPostChangeACType} from './profile-reducer';
+import {addButtonPostACType, onPostChangeACType} from './profile-reducer';
 import DialogsReducer, {addButtonMessageACType, updateNewMessageACType} from './dialogs-reducer';
 
 type PostsType = {

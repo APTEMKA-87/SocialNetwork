@@ -5,12 +5,12 @@ import {connect} from 'react-redux';
 import {ProfileType, setUserProfile} from '../../Redux/profile-reducer';
 import {RootStateType} from '../../Redux/redux-store';
 
-type ProfileContainerPropsType = {    // надо ли сюда что то передавать и что?
-    setUserProfile: (profile: ProfileType) => void //
+type ProfileContainerPropsType = {
+    setUserProfile: (profile: ProfileType) => void
     profile: ProfileType | null
 }
 
-class ProfileContainer extends React.Component<ProfileContainerPropsType> {     // что передается вторым параметром?
+class ProfileContainer extends React.Component<ProfileContainerPropsType> {
 
     componentDidMount() {
         axios.get<ProfileType>(`https://social-network.samuraijs.com/api/1.0/profile/2`)
@@ -19,7 +19,6 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {     
             });
     }
 
-
     render() {
         return (
             <Profile profile={this.props.profile} />
@@ -27,11 +26,9 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {     
     }
 }
 
-let mapStateToProps = (state: RootStateType) => ({          // какой стейт сюда приходит? profilePage
+let mapStateToProps = (state: RootStateType) => ({
         profile: state.profilePage.profile
 })
-
-
 
 export default connect (mapStateToProps, {
     setUserProfile

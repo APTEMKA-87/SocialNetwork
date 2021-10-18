@@ -42,7 +42,7 @@ type ResponseType = {
     error: string
 }
 
-class UsersContainer extends React.Component <UsersContainerPropsType, any> {        // type?
+class UsersContainer extends React.Component <UsersContainerPropsType> {
 
     componentDidMount() {
         this.props.toggleIsFetching(true)
@@ -92,4 +92,4 @@ export default connect(mapStateToProps,
     {
         follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching
     }
-)(UsersContainer); //?
+)(UsersContainer);
