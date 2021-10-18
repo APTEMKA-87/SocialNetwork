@@ -1,7 +1,17 @@
 import React from 'react';
 import s from '../Profile.module.css';
+import Preloader from '../../common/Preloader/preloader';
 
-const ProfileInfo = () => {
+type ProfileInfoPropsType = {
+
+}
+
+const ProfileInfo = (props: any) => {
+
+    if (!props.profile) {
+        return <Preloader/>
+    }
+
     return (
         <div>
             <div className={s.content}>
@@ -11,6 +21,7 @@ const ProfileInfo = () => {
             <div className={s.post}>
                 <h3>Latest Activity</h3>
                 <div>
+                    <img src={props.profile.photos.large}/>
                     Avatar+Description
                 </div>
             </div>

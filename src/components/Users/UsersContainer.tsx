@@ -22,7 +22,7 @@ type MapStateToPropsType = {
     isFetching: boolean
 }
 
-type PropsType = {
+type UsersContainerPropsType = {
     users: Array<UserType>
     totalUserCount: number
     setUsers: (users: Array<UserType>) => void
@@ -42,7 +42,7 @@ type ResponseType = {
     error: string
 }
 
-class UsersContainer extends React.Component <PropsType, any> {        // type?
+class UsersContainer extends React.Component <UsersContainerPropsType, any> {        // type?
 
     componentDidMount() {
         this.props.toggleIsFetching(true)

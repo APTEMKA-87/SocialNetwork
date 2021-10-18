@@ -7,12 +7,43 @@ export type PostsType = {
 export type ProfileInitialStateType = {
     posts: Array<PostsType>
     newPostText: string
+    profile: ProfileType | null
+}
+
+export type ContactsType = {
+    facebook: string
+    website: string
+    vk: string
+    twitter: string
+    instagram: string
+    youtube: string
+    github: string
+    mainLink: string
+
+}
+
+export type PhotosType = {
+    small: string
+    large: string
+}
+
+
+export type ProfileType = {
+    aboutMe: string
+    contacts: ContactsType
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    userId: number
+    photos: PhotosType
+
 }
 
 const ADD_POST = 'ADD_POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT'
+const SET_USER_PROFILE = 'SET_USER_PROFILE'
 
-let initialState = {
+let initialState: ProfileInitialStateType = {
     posts: [
         {
             id: 1,
@@ -26,10 +57,11 @@ let initialState = {
             likesCount: 10
         }
     ],
-    newPostText: ''
-} as ProfileInitialStateType
+    newPostText: '',
+    profile: null
+}
 
-const ProfileReducer = (state: ProfileInitialStateType = initialState, action: ActionsProfileType): ProfileInitialStateType => {
+const ProfileReducer = (state = initialState, action: ActionsProfileType): ProfileInitialStateType => {
         switch (action.type) {
             case ADD_POST: {
                 let newPost: PostsType = {
@@ -49,18 +81,26 @@ const ProfileReducer = (state: ProfileInitialStateType = initialState, action: A
                     newPostText: action.newText
                 }
             }
+            case SET_USER_PROFILE: {
+                return {
+                    ...state,
+                    profile: action.profile
+                }
+            }
             default:
                 return state
         }
     }
 ;
 
-export type ActionsProfileType = onPostChangeACType | addButtonPostACType
+export type ActionsProfileType = onPostChangeACType | addButtonPostACType | setUserProfileACType
 
 export type onPostChangeACType = ReturnType<typeof onPostChange>
 export type addButtonPostACType = ReturnType<typeof addPost>
+export type setUserProfileACType = ReturnType<typeof setUserProfile>
 
 export const addPost = () => ({type: ADD_POST} as const)
 export const onPostChange = (newText: string) => ({type: UPDATE_NEW_POST_TEXT, newText: newText} as const)
+export const setUserProfile = (profile: ProfileType) => ({type: SET_USER_PROFILE, profile} as const)               // типизировать json приходящего объекта профайл
 
 export default ProfileReducer;
