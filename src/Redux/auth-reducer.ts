@@ -1,7 +1,7 @@
 type initialStateType = {
-    id: null | number
-    email: null | string
-    login: null | string
+    id: number | null
+    email: string | null
+    login: string | null
 }
 
 let initialState = {
@@ -26,6 +26,9 @@ export type ActionAuthType = setUserDataACType
 
 export type setUserDataACType = ReturnType<typeof setUserData>
 
-export const setUserData = (id: number, email: string, login: string) => ({type: SET_USER_DATA,data: { id, email, login}} as const)
+export const setUserData = (id: number, email: string, login: string) => ({
+    type: SET_USER_DATA,
+    data: {id, email, login}
+} as const)
 
 export default authReducer;
