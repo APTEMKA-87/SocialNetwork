@@ -28,6 +28,12 @@ export type PhotosType = {
 }
 
 
+export type DataType = {
+    userId: number
+    email: string
+    login: string
+}
+
 export type ProfileType = {
     aboutMe: string
     contacts: ContactsType
@@ -36,6 +42,8 @@ export type ProfileType = {
     fullName: string
     userId: number
     photos: PhotosType
+    data: DataType
+    resultCode: number
 
 }
 
