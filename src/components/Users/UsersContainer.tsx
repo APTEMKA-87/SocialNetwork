@@ -13,6 +13,7 @@ import React from 'react';
 import axios from 'axios';
 import Users from './Users';
 import Preloader from '../common/Preloader/preloader';
+import {getUsers} from '../../api/api';
 
 type MapStateToPropsType = {
     users: Array<UserType>
@@ -36,7 +37,7 @@ type UsersContainerPropsType = {
     toggleIsFetching: (isFetching: boolean) => void
 }
 
-type ResponseType = {
+export type ResponseType = {
     items: Array<UserType>,
     totalCount: number,
     error: string
@@ -46,7 +47,7 @@ class UsersContainer extends React.Component <UsersContainerPropsType> {
 
     componentDidMount() {
         this.props.toggleIsFetching(true)
-        axios.get<ResponseType>(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currenPage}&count=${this.props.pageSize}`, {withCredentials: true}).then(response => {
+       getUsers(this.props.currenPage, this.props.pageSize).then(response => {
             this.props.toggleIsFetching(false)
             this.props.setUsers(response.data.items)
             this.props.setTotalUsersCount(response.data.totalCount)

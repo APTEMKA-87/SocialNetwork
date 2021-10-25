@@ -15,7 +15,7 @@ type UsersPropsType = {
     onPostChanged: (pageNumber: number) => void
 }
 
-type CommonType<T = {}> = {
+export type CommonType<T = {}> = {
     resultCode: number
     message: string[]
     data: T
