@@ -26,7 +26,7 @@ class HeaderContainer extends React.Component<PropsType> {
         })
             .then(response => {
                 if (response.data.resultCode === 0) {
-                    let {userId, email, login} = response.data.data // типа деструктуризация хз для чего и что это?
+                    let {userId, email, login} = response.data.data
                     this.props.setAuthUserData(userId, email, login)
                 }
             });

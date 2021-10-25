@@ -2,7 +2,8 @@ import React from 'react';
 import styles from './users.module.css';
 import userPhoto from '../../img/user_photo.png';
 import {UserType} from '../../Redux/user-reducer';
-import { NavLink } from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
+import axios, {AxiosResponse} from 'axios';
 
 type UsersPropsType = {
     users: Array<UserType>
@@ -12,6 +13,12 @@ type UsersPropsType = {
     pageSize: number
     currenPage: number
     onPostChanged: (pageNumber: number) => void
+}
+
+type CommonType<T = {}> = {
+    resultCode: number
+    message: string[]
+    data: T
 }
 
 const Users = (props: UsersPropsType) => {
@@ -46,23 +53,48 @@ const Users = (props: UsersPropsType) => {
                               <div>
                             {u.followed
                                 ? <button onClick={() => {
-                                    props.unfollow(u.id)
+                                    axios.delete<{}, AxiosResponse<CommonType>>(`https://social-network.samuraijs.com/api/1.0/follow${u.id}`,
+                                        {
+                                            withCredentials: true,
+                                            headers: {
+                                                'API-KEY': 'aececd3b-d735-49ec-b1a0-b183ec8b6f42'
+                                            }
+                                        }
+                                    )
+                                        .then(response => {
+                                            if (response.data.resultCode === 0) {
+                                                props.unfollow(u.id)
+                                            }
+                                        })
+
                                 }}>Unfollow</button>
                                 : <button onClick={() => {
-                                    props.follow(u.id)
+                                    axios.post<{}, AxiosResponse<CommonType>>(`https://social-network.samuraijs.com/api/1.0/follow${u.id}`, {},
+                                        {
+                                            withCredentials: true,
+                                            headers: {
+                                                'API-KEY': 'aececd3b-d735-49ec-b1a0-b183ec8b6f42'
+                                            }
+                                        })
+                                        .then(response => {
+                                            if (response.data.resultCode === 0) {
+                                                props.follow(u.id)
+                                            }
+                                        })
+
                                 }}>Follow</button>}
-                                </div>
-                    </span>
+                                    </div>
+                                    </span>
                     <span>
-                        <span>
-                             <div>{u.name}</div>
-                            <div>{u.status}</div>
-                        </span>
-                        <span>
-                                <div>{'u.location.country'}</div>
-                                <div>{'u.location.city'}</div>
-                        </span>
-                    </span>
+                                    <span>
+                                    <div>{u.name}</div>
+                                    <div>{u.status}</div>
+                                    </span>
+                                    <span>
+                                    <div>{'u.location.country'}</div>
+                                    <div>{'u.location.city'}</div>
+                                    </span>
+                                    </span>
                 </div>)
             }
         </div>
