@@ -53,7 +53,7 @@ const Users = (props: UsersPropsType) => {
                               <div>
                             {u.followed
                                 ? <button onClick={() => {
-                                    axios.delete<{}, AxiosResponse<CommonType>>(`https://social-network.samuraijs.com/api/1.0/follow${u.id}`,
+                                    axios.delete<{}, AxiosResponse<CommonType>>(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,
                                         {
                                             withCredentials: true,
                                             headers: {
@@ -69,7 +69,7 @@ const Users = (props: UsersPropsType) => {
 
                                 }}>Unfollow</button>
                                 : <button onClick={() => {
-                                    axios.post<{}, AxiosResponse<CommonType>>(`https://social-network.samuraijs.com/api/1.0/follow${u.id}`, {},
+                                    axios.post<{}, AxiosResponse<CommonType>>(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {},
                                         {
                                             withCredentials: true,
                                             headers: {
