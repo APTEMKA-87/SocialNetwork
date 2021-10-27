@@ -20,10 +20,10 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
                      alt=""/>
             </div>
             <div className={s.post}>
-                <h3>Latest Activity</h3>
-                <div>
-                    <img src={props.profile.photos.large}/>
-                    Avatar+Description
+                <h3>Selected User</h3>
+                <div >
+                    <img className={s.user} src={props.profile.photos.large}/>
+                   // добавить данные юзера с сервера (location etc)
                 </div>
             </div>
         </div>

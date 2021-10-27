@@ -49,7 +49,7 @@ class UsersContainer extends React.Component <UsersContainerPropsType> {
        usersAPI.getUsers(this.props.currenPage, this.props.pageSize).then(data => {
             this.props.toggleIsFetching(false)
             this.props.setUsers(data.items)
-            this.props.setTotalUsersCount(data.totalCount)
+            this.props.setTotalUsersCount(200)  // было data.totalCount, но чтобы не отображоло миллион страниц, захардкодил число
         })
     }
 

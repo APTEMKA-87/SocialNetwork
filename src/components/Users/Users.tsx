@@ -30,7 +30,7 @@ const Users = (props: UsersPropsType) => {
     }
 
     return (
-        <div>
+        <div className={styles.body}>
             <div>
                 {pages.map(p => {
                     return <span
