@@ -95,16 +95,16 @@ export type ActionsUsersType = followACType
     | toggleIsFetchingACType
     | toggleFollowingProgressACType
 
-export type followACType = ReturnType<typeof follow>
-export type unfollowACType = ReturnType<typeof unfollow>
+export type followACType = ReturnType<typeof followSuccess>
+export type unfollowACType = ReturnType<typeof unfollowSuccess>
 export type setUsersACType = ReturnType<typeof setUsers>
 export type setCurrentPageACType = ReturnType<typeof setCurrentPage>
 export type setTotalUsersCountACType = ReturnType<typeof setTotalUsersCount>
 export type toggleIsFetchingACType = ReturnType<typeof toggleIsFetching>
 export type toggleFollowingProgressACType = ReturnType<typeof toggleFollowingProgress>
 
-export const follow = (userId: number) => ({type: FOLLOW, userId} as const)
-export const unfollow = (userId: number) => ({type: UNFOLLOW, userId} as const)
+export const followSuccess = (userId: number) => ({type: FOLLOW, userId} as const)
+export const unfollowSuccess = (userId: number) => ({type: UNFOLLOW, userId} as const)
 export const setUsers = (users: Array<UserType>) => ({type: SET_USERS, users} as const)
 export const setCurrentPage = (currenPage: number) => ({type: SET_CURRENT_PAGE, currenPage} as const)
 export const setTotalUsersCount = (totalUserCount: number) => ({
@@ -128,6 +128,32 @@ export const getUsers = (currenPage: number, pageSize: number) => {
             dispatch(setUsers(data.items))
             dispatch(setTotalUsersCount(200))  // было data.totalCount, но чтобы не отображоло миллион страниц, захардкодил число
         })
+    }
+}
+
+export const follow = (userId: number) => {
+    return (dispatch: Dispatch) => {
+        dispatch(toggleFollowingProgress(false, userId))
+        usersAPI.follow(userId)
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    dispatch(followSuccess(userId))
+                }
+                dispatch(toggleFollowingProgress(false, userId))
+            })
+    }
+}
+
+export const unfollow = (userId: number) => {
+    return (dispatch: Dispatch) => {
+        dispatch(toggleFollowingProgress(false, userId))
+        usersAPI.unfollow(userId)
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    dispatch(unfollowSuccess(userId))
+                }
+                dispatch(toggleFollowingProgress(false, userId))
+            })
     }
 }
 
