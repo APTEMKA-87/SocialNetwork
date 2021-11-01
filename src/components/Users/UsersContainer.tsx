@@ -48,12 +48,7 @@ export type ResponseType = {
 class UsersContainer extends React.Component <UsersContainerPropsType> {
 
     componentDidMount() {
-        this.props.toggleIsFetching(true)
-       usersAPI.getUsers(this.props.currenPage, this.props.pageSize).then(data => {
-            this.props.toggleIsFetching(false)
-            this.props.setUsers(data.items)
-            this.props.setTotalUsersCount(200)  // было data.totalCount, но чтобы не отображоло миллион страниц, захардкодил число
-        })
+
     }
 
     onPostChanged = (pageNumber: number) => {

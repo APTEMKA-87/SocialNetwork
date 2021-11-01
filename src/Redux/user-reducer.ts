@@ -1,3 +1,6 @@
+import {usersAPI} from '../api/api';
+import {Dispatch} from 'redux';
+
 type PhotosType = {
     small: string
     large: string
@@ -109,6 +112,23 @@ export const setTotalUsersCount = (totalUserCount: number) => ({
     totalCount: totalUserCount
 } as const)
 export const toggleIsFetching = (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, isFetching} as const)
-export const toggleFollowingProgress = (isFetching: boolean, userId: number) => ({type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId} as const)
+export const toggleFollowingProgress = (isFetching: boolean, userId: number) => ({
+    type: TOGGLE_IS_FOLLOWING_PROGRESS,
+    isFetching,
+    userId
+} as const)
+
+export const getUsersThunkCreator = (currenPage: number, pageSize: number) => {
+    return (dispatch: Dispatch) => {
+        dispatch(toggleIsFetching(true))
+
+        usersAPI.getUsers(currenPage, pageSize).then(data => {
+
+            dispatch(toggleIsFetching(false))
+            dispatch(setUsers(data.items))
+            dispatch(setTotalUsersCount(200))  // было data.totalCount, но чтобы не отображоло миллион страниц, захардкодил число
+        })
+    }
+}
 
 export default usersReducer
