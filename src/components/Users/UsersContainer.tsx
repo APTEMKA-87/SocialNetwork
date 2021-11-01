@@ -1,10 +1,12 @@
 import {connect} from 'react-redux';
 import {RootStateType} from '../../Redux/redux-store';
 import {
-    follow, getUsersThunkCreator,
+    follow,
+    getUsersThunkCreator,
     setCurrentPage,
     setTotalUsersCount,
-    setUsers, toggleFollowingProgress,
+    setUsers,
+    toggleFollowingProgress,
     toggleIsFetching,
     unfollow,
     UserType
@@ -12,7 +14,6 @@ import {
 import React from 'react';
 import Users from './Users';
 import Preloader from '../common/Preloader/preloader';
-import {usersAPI} from '../../api/api';
 
 type MapStateToPropsType = {
     users: Array<UserType>
@@ -49,17 +50,11 @@ export type ResponseType = {
 class UsersContainer extends React.Component <UsersContainerPropsType> {
 
     componentDidMount() {
-        this.props.getUsers(this.props.currenPage, this.props.pageSize )
+        this.props.getUsers(this.props.currenPage, this.props.pageSize)
     }
 
     onPostChanged = (pageNumber: number) => {
-        this.props.toggleIsFetching(true)
-        this.props.setCurrentPage(pageNumber)
-
-        usersAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
-            this.props.toggleIsFetching(false)
-            this.props.setUsers(data.items)
-        })
+        this.props.getUsers(pageNumber, this.props.pageSize)
     }
 
     render() {
