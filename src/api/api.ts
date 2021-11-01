@@ -1,5 +1,6 @@
-import axios from 'axios';
+import axios, {AxiosResponse} from 'axios';
 import {ResponseType} from '../components/Users/UsersContainer';
+import {CommonType} from '../components/Users/Users';
 
 
 const instance = axios.create({
@@ -17,5 +18,11 @@ export const usersAPI = {
                     return response.data
                 }
             )
+    },
+    follow(userId: number) {
+        return instance.post<{}, AxiosResponse<CommonType>>(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, {},)
+    },
+    unfollow(userId: number) {
+        return instance.delete<{}, AxiosResponse<CommonType>>(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`)
     }
 }
