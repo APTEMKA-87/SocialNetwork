@@ -1,6 +1,7 @@
 import axios, {AxiosResponse} from 'axios';
 import {ResponseType} from '../components/Users/UsersContainer';
 import {CommonType} from '../components/Users/Users';
+import {ProfileType} from '../Redux/profile-reducer';
 
 
 const instance = axios.create({
@@ -24,5 +25,8 @@ export const usersAPI = {
     },
     unfollow(userId: number) {
         return instance.delete<{}, AxiosResponse<CommonType>>(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`)
+    },
+    getProfile(userId: number) {
+        return instance.get<ProfileType>(`https://social-network.samuraijs.com/api/1.0/profile/` + userId);
     }
 }
