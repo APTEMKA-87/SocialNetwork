@@ -9,7 +9,7 @@ type PathParamsType = {
     userId: string
 }
 
-type mapStateToPropsType = {
+type MapStateToPropsType = {
     profile: ProfileType | null
 }
 
@@ -17,7 +17,7 @@ type MapDispatchPropsType = {
     getUserProfile: (userId: number) => void
 }
 
-type CommonPropsType = mapStateToPropsType & MapDispatchPropsType
+type CommonPropsType = MapStateToPropsType & MapDispatchPropsType
 type ProfileContainerPropsType = RouteComponentProps<PathParamsType> & CommonPropsType
 
 
@@ -41,10 +41,10 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
     }
 }
 
-let mapStateToProps = (state: RootStateType): mapStateToPropsType => ({
+let mapStateToProps = (state: RootStateType): MapStateToPropsType => ({
         profile: state.profilePage.profile
 })
 
 let WithUrlDataProfileContainerComponent = withRouter(ProfileContainer)
 
-export default connect<mapStateToPropsType, MapDispatchPropsType,{}, RootStateType>(mapStateToProps, {getUserProfile}) (WithUrlDataProfileContainerComponent)
+export default connect<MapStateToPropsType, MapDispatchPropsType,{}, RootStateType>(mapStateToProps, {getUserProfile}) (WithUrlDataProfileContainerComponent)
