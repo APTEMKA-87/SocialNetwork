@@ -21,12 +21,18 @@ export const usersAPI = {
             )
     },
     follow(userId: number) {
-        return instance.post<{}, AxiosResponse<CommonType>>(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, {},)
+        return instance.post<{}, AxiosResponse<CommonType>>(`follow/${userId}`, {},)
     },
     unfollow(userId: number) {
-        return instance.delete<{}, AxiosResponse<CommonType>>(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`)
+        return instance.delete<{}, AxiosResponse<CommonType>>(`follow/${userId}`)
     },
     getProfile(userId: number) {
-        return instance.get<ProfileType>(`https://social-network.samuraijs.com/api/1.0/profile/` + userId);
+        return instance.get<ProfileType>(`profile/` + userId);
+    }
+}
+
+export const authAPI = {
+    me() {
+        return instance.get<ProfileType>(`auth/me`)
     }
 }
