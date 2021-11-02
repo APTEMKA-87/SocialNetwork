@@ -1,3 +1,6 @@
+import {Dispatch} from 'redux';
+import {usersAPI} from '../api/api';
+
 export type PostsType = {
     id: number
     post: string
@@ -101,14 +104,24 @@ const ProfileReducer = (state = initialState, action: ActionsProfileType): Profi
     }
 ;
 
-export type ActionsProfileType = onPostChangeACType | addButtonPostACType | setUserProfileACType
+export type ActionsProfileType = onPostChangeACType
+    | addButtonPostACType
+    | setUserProfileACType
 
 export type onPostChangeACType = ReturnType<typeof onPostChange>
 export type addButtonPostACType = ReturnType<typeof addPost>
 export type setUserProfileACType = ReturnType<typeof setUserProfile>
 
+
 export const addPost = () => ({type: ADD_POST} as const)
 export const onPostChange = (newText: string) => ({type: UPDATE_NEW_POST_TEXT, newText: newText} as const)
-export const setUserProfile = (profile: ProfileType) => ({type: SET_USER_PROFILE, profile} as const)               // типизировать json приходящего объекта профайл
+export const setUserProfile = (profile: ProfileType) => ({type: SET_USER_PROFILE, profile} as const)
+
+export const getUserProfile = (userId: number) => (dispatch: Dispatch) => {
+    usersAPI.getProfile(userId)
+        .then(response => {
+            dispatch(setUserProfile(response.data))
+        })
+}
 
 export default ProfileReducer;
