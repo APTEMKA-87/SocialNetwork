@@ -5,11 +5,14 @@ import {RootStateType} from '../../Redux/redux-store';
 
 type MapStateToPropsType = {
     dialogPage: DialogPageType
+    isAuth: boolean
 }
 
 let mapStateToProps = (state: RootStateType): MapStateToPropsType => {
     return {
-        dialogPage: state.dialogPage
+        dialogPage: state.dialogPage,
+        isAuth: state.auth.isAuth
+
     }
 }
 
@@ -17,6 +20,6 @@ const DialogContainer = connect(mapStateToProps,
     {
         updateNewMessageBody, sendMessage
     }
-)(Dialogs) // ?
+)(Dialogs)
 
 export default DialogContainer;
