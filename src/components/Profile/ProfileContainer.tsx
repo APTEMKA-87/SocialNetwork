@@ -47,5 +47,4 @@ let mapStateToProps = (state: RootStateType): MapStateToPropsType => ({
 export default compose <React.ComponentType> (
     connect(mapStateToProps, {getUserProfile}),
     withRouter,
-    WithAuthRedirect
 )(ProfileContainer)
