@@ -11,6 +11,8 @@ import {
 import React from 'react';
 import Users from './Users';
 import Preloader from '../common/Preloader/preloader';
+import {compose} from 'redux';
+import {WithAuthRedirect} from '../../hoc/withAuthRedirect';
 
 
 type UsersContainerPropsType = {
@@ -68,13 +70,7 @@ type MapStateToPropsType = {
     isFetching: boolean
     followingInProgress: number[]
 }
-type MapDispatchToPropsType = {
-    followSuccess: (userId: number) => void,
-    unfollowSuccess: (userId: number) => void,
-    setCurrentPage: (currenPage: number)=> void,
-    toggleFollowingProgress: (isFetching: boolean, userId: number) => void,
-    getUsers: (currenPage: number, pageSize: number)=> void,
-}
+
 let mapStateToProps = (state: RootStateType): MapStateToPropsType => {
     return {
         users: state.usersPage.users,
@@ -86,8 +82,10 @@ let mapStateToProps = (state: RootStateType): MapStateToPropsType => {
     }
 }
 
-export default connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootStateType>(mapStateToProps,
-    {
-        followSuccess, unfollowSuccess, setCurrentPage, toggleFollowingProgress, getUsers
-    }
-)(UsersContainer);
+export default compose <React.ComponentType> (
+    WithAuthRedirect,
+    connect(mapStateToProps,
+        {
+            followSuccess, unfollowSuccess, setCurrentPage, toggleFollowingProgress, getUsers
+        })
+)(UsersContainer)
