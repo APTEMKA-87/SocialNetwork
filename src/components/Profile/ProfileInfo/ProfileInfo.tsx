@@ -6,6 +6,8 @@ import ProfileStatus from './ProfileStatus';
 
 type ProfileInfoPropsType = {
     profile: ProfileType | null
+    status: string
+    updateStatus: (status: string) => void
 }
 
 const ProfileInfo = (props: ProfileInfoPropsType) => {
@@ -23,7 +25,7 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
             <div className={s.post}>
                 <h3>Selected User</h3>
                 <div>
-                    <ProfileStatus status={'Hello'}/>
+                    <ProfileStatus status={props.status}/>
                     <img className={s.user} src={props.profile.photos.large}/>
                     // добавить данные юзера с сервера (location etc)
                 </div>

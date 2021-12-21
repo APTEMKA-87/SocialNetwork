@@ -27,7 +27,20 @@ export const usersAPI = {
         return instance.delete<{}, AxiosResponse<CommonType>>(`follow/${userId}`)
     },
     getProfile(userId: number) {
+        console.log('Старый метод, используй ProfileAPI')
+        return profileAPI.getProfile(userId);
+    }
+}
+
+export const profileAPI = {
+    getProfile(userId: number) {
         return instance.get<ProfileType>(`profile/` + userId);
+    },
+    getStatus(userId: number) {
+        return instance.get(`profile/status/` + userId);
+    },
+    updateStatus (status: string){
+        return instance.put<{status: string}, AxiosResponse<UpdateStatusType>>(`profile/status`, {status});
     }
 }
 
@@ -36,3 +49,11 @@ export const authAPI = {
         return instance.get<ProfileType>(`auth/me`)
     }
 }
+
+type UpdateStatusType = {
+    resultCode: number
+    messages: Array<string>
+    data:{}
+}
+
+//ToDo сделать типизацию  getStatus
