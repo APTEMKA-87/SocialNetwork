@@ -25,7 +25,7 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
             <div className={s.post}>
                 <h3>Selected User</h3>
                 <div>
-                    <ProfileStatus status={props.status}/>
+                    <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
                     <img className={s.user} src={props.profile.photos.large}/>
                     // добавить данные юзера с сервера (location etc)
                 </div>
