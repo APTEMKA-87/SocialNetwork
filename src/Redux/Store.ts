@@ -1,5 +1,5 @@
 import {addButtonPostACType, onPostChangeACType} from './profile-reducer';
-import DialogsReducer, {addButtonMessageACType, updateNewMessageACType} from './dialogs-reducer';
+import DialogsReducer, {addButtonMessageACType} from './dialogs-reducer';
 
 type PostsType = {
     id: number,
@@ -44,8 +44,7 @@ type StoreType = {
 type ActionTypes =
     addButtonPostACType |
     addButtonMessageACType |
-    onPostChangeACType |
-    updateNewMessageACType
+    onPostChangeACType
 
 const store: StoreType = {
     _state: {
@@ -96,7 +95,7 @@ const store: StoreType = {
 
     dispatch(action: any) {
        // this._state.profilePage = ProfileReducer(this._state.profilePage, action)
-        this._state.dialogPage = DialogsReducer(this._state.dialogPage, action)
+       //this._state.dialogPage = DialogsReducer(this._state.dialogPage, action)
         this._callSubscriber()
     }
 }
