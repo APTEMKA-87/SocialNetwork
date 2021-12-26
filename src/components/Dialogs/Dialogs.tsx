@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import s from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogItem';
 import MessageDialogs from './Message/Message';
@@ -18,22 +18,12 @@ const Dialogs = (props: DialogsPropsType) => {
 
     let dialogElements = state.dialogs.map(d => <DialogItem name={d.name} key={d.id} id={d.id}/>)
     let messagesElements = state.messages.map(m => <MessageDialogs messageDialog={m.message} key={m.id}/>)
-    /*let newMessageBody = state.newMessage*/
-
-   /* const onSendMessageClick = () => {
-        props.sendMessage()
-    }*/
 
     const addNewMessage = (values: any) => {    // ToDo type inputElement?
         props.sendMessage(values.newMessageBody)
     }
 
-    /*const onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        let body = e.target.value
-        props.updateNewMessageBody(body)
-    }*/
-
-    return (
+      return (
         <div className={s.content}>
             <div className={s.dialogItems}>
                 {dialogElements}
@@ -56,13 +46,7 @@ const AddMessageForm: React.FC<InjectedFormProps<AddMessageFormType>> = (props) 
 
             <div className={s.newMessage}>
                 <Field component="textarea" name="newMessageBody" placeholder="Enter your message"/>
-                {/*<textarea className={s.textArea}
-                              value={newMessageBody}
-                              onChange={onNewMessageChange}
-                              placeholder="Enter your message"/>*/}
-                <button className={b.button}
-                    /*onClick={onSendMessageClick}*/>Send
-                </button>
+                <button className={b.button}>Send</button>
             </div>
         </form>
     )
