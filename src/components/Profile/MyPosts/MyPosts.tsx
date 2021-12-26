@@ -2,6 +2,7 @@ import React from 'react';
 import s from './MyPosts.module.css'
 import Post from './Post/Post';
 import {Field, InjectedFormProps, reduxForm} from 'redux-form';
+import {maxLenghtCreator, required} from '../../../utils/validators';
 
 export type PostsType = {
     id: number,
@@ -11,8 +12,6 @@ export type PostsType = {
 
 export type MyPostsPropsType = {
     posts: Array<PostsType>,
-    // newPostText: string,
-    // onPostChange: (text: string) => void
     addPost: (values: any) => void
 }
 
@@ -35,10 +34,13 @@ type AddNewPostFormType = {
     newPostText: string
 }
 
+const maxLength10 = maxLenghtCreator(10)
+
 const AddNewPostForm: React.FC<InjectedFormProps<AddNewPostFormType>> = (props) => {
     return <form onSubmit={props.handleSubmit}>
         <div className={s.addPost}>
-            <Field name="newPostText" component='textarea'/>
+            <Field name="newPostText" component="textarea"
+                   validate={[required, maxLength10]}/>
             <button>Add Post</button>
         </div>
     </form>
