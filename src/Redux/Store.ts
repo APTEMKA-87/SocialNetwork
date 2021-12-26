@@ -1,5 +1,5 @@
-import {addButtonPostACType, onPostChangeACType} from './profile-reducer';
-import DialogsReducer, {addButtonMessageACType} from './dialogs-reducer';
+import {addButtonPostACType} from './profile-reducer';
+import {addButtonMessageACType} from './dialogs-reducer';
 
 type PostsType = {
     id: number,
@@ -43,8 +43,7 @@ type StoreType = {
 
 type ActionTypes =
     addButtonPostACType |
-    addButtonMessageACType |
-    onPostChangeACType
+    addButtonMessageACType
 
 const store: StoreType = {
     _state: {
