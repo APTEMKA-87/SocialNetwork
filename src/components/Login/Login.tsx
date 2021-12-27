@@ -1,8 +1,13 @@
 import React from 'react';
 import {Field, InjectedFormProps, reduxForm} from 'redux-form';
+import {connect} from 'react-redux';
+import {login} from '../../Redux/auth-reducer';
+import {required} from '../../utils/validators';
+import {Redirect} from 'react-router-dom';
+import {RootStateType} from '../../Redux/redux-store';
 
 type FormDataType = {
-    login: string
+    email: string
     password: string
     rememberMe: boolean
 }
@@ -11,10 +16,10 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field placeholder={'Login'} name={'login'} component={'input'}/>
+                <Field placeholder={'Email'} name={'email'} component={'input'} validate={[required]}/>
             </div>
             <div>
-                <Field placeholder={'Password'} name={'password'} component={'input'}/>
+                <Field placeholder={'Password'} name={'password'} component={'input'} validate={[required]}/>
             </div>
             <div>
                 <Field component={'input'} name={'rememberMe'} type={'checkbox'}/> remember me
@@ -28,10 +33,14 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
 
 const LoginReduxForm = reduxForm<FormDataType>({form: 'login'})(LoginForm)
 
-const Login = () => {
+const Login = (props: any) => { // ToDo type
 
     const onSubmit = (formData: FormDataType) => {
-        console.log(formData)
+        props.login(formData.email, formData.password, formData.rememberMe)
+    }
+
+    if (props.isAuth) {
+        return <Redirect to={'/profile'}/>    //ToDo нужен ли слеш?
     }
 
     return <div>
@@ -40,4 +49,8 @@ const Login = () => {
     </div>
 };
 
-export default Login;
+const mapStateToProps = (state: RootStateType) => ({  // ToDo посмотреть типизацию
+    isAuth: state.auth.isAuth
+})
+
+export default connect(mapStateToProps, {login})(Login);

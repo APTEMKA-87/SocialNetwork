@@ -21,7 +21,7 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
     let postsElement =
         props.posts.map(p => <Post postFromPost={p.post} key={p.id} likeCount={p.likesCount}/>)
 
-    let addButtonPost = (values: any) => {
+    let addButtonPost = (values: any) => { // ToDo type inputElement?
         props.addPost(values.newPostText)
     }
 

@@ -47,6 +47,12 @@ export const profileAPI = {
 export const authAPI = {
     me() {
         return instance.get<ProfileType>(`auth/me`)
+    },
+    login(email: string, password: string, rememberMe=false) {
+        return instance.post<any>(`auth/login`, {email, password, rememberMe})
+    },
+    logout() {
+        return instance.delete<any>(`auth/login`)
     }
 }
 
@@ -54,6 +60,17 @@ type UpdateStatusType = {
     resultCode: number
     messages: Array<string>
     data:{}
+}
+
+type LoginType = {
+    email: string
+    password: string
+    rememberMe: boolean
+
+}
+
+type GetStatusType ={
+    userId: number
 }
 
 //ToDo сделать типизацию  getStatus
